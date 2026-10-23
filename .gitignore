@@ -1,6 +1,5 @@
 developer_key
-/written/bin
-/written/manifest.xml
-/written/monkey.jungle
-written.iq
-/written/build
+/bin
+/manifest.xml
+/monkey.jungle
+/build
