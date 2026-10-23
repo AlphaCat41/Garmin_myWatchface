@@ -12,211 +12,395 @@ import Toybox.Time.Gregorian;
 import Toybox.Math;
 [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 7; @symbol_importdef<0> = [Toybox,7,7,13]; @symbol_importdef<1> = [Time,7,14,18]; ]
 import Toybox.Time;
-[ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 9; @symbol_classdef = [myWatchfaceView,9,6,21]; @symbol_extends<0> = [WatchUi,9,30,37]; @symbol_extends<1> = [WatchFace,9,38,47]; ]
+[ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 8; @symbol_importdef<0> = [Toybox,8,7,13]; @symbol_importdef<1> = [Timer,8,14,19]; ]
+import Toybox.Timer;
+[ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 10; @symbol_classdef = [myWatchfaceView,10,6,21]; @symbol_extends<0> = [WatchUi,10,30,37]; @symbol_extends<1> = [WatchFace,10,38,47]; ]
 class myWatchfaceView extends WatchUi.WatchFace {
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 9; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 10; ]
     <init> {
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 9; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 10; ]
     static
     <init> {
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 11; @symbol_functiondef = [initialize,11,13,23]; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 11; @position = 16; @symbol_vardef = [_progress,11,16,25]; @symbol_type<0> = [Float,11,29,34]; ]
+    private
+    var _progress as Float = 1.0;
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 12; @position = 16; @symbol_vardef = [_timer,12,16,22]; @symbol_type<0> = [Timer,12,26,31]; @symbol_type<1> = [Timer,12,32,37]; ]
+    private
+    var _timer as Timer.Timer or Null = null;
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 13; @position = 16; @symbol_vardef = [_startMs,13,16,24]; @symbol_type<0> = [Number,13,28,34]; ]
+    private
+    var _startMs as Number = 0;
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 14; @position = 16; @symbol_vardef = [_animMs,14,16,23]; @symbol_type<0> = [Number,14,27,33]; ]
+    private
+    var _animMs as Number = 800;
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 16; @symbol_functiondef = [initialize,16,13,23]; ]
     function initialize() as Void {
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_11_26_13_4_start:
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 12 8 ]
-        symbol [ WatchFace %tmp.2 12 8 17 ];
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_16_26_18_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 17 8 ]
+        symbol [ WatchFace %tmp.2 17 8 17 ];
         %tmp.2 = getv ? :WatchFace;
-        symbol [ initialize %tmp.3 12 18 28 ];
+        symbol [ initialize %tmp.3 17 18 28 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_11_26_13_4_stop:
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_16_26_18_4_stop:
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 16; @symbol_functiondef = [onLayout,16,13,21]; @symbol_param<0> = [dc,16,22,24]; @symbol_param<0>_type<0> = [Dc,16,28,30]; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 21; @symbol_functiondef = [onLayout,21,13,21]; @symbol_param<0> = [dc,21,22,24]; @symbol_param<0>_type<0> = [Dc,21,28,30]; ]
     function onLayout(dc as Dc) as Void {
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_16_40_18_4_start:
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 17 8 ]
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_21_40_23_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 22 8 ]
         %tmp.1 = self;
-        symbol [ setLayout %tmp.2 17 8 17 ];
+        symbol [ setLayout %tmp.2 22 8 17 ];
         %tmp.2 = getv function %tmp.1 :setLayout;
-        symbol [ Rez %tmp.4 17 18 21 ];
+        symbol [ Rez %tmp.4 22 18 21 ];
         %tmp.4 = getv ? :Rez;
-        symbol [ Layouts %tmp.5 17 22 29 ];
+        symbol [ Layouts %tmp.5 22 22 29 ];
         %tmp.5 = getv %tmp.4 :Layouts;
-        symbol [ WatchFace %tmp.6 17 30 39 ];
+        symbol [ WatchFace %tmp.6 22 30 39 ];
         %tmp.6 = getv function %tmp.5 :WatchFace;
         %tmp.7 = lgetv %dc;
-        symbol [ dc %tmp.7 17 40 42 ];
+        symbol [ dc %tmp.7 22 40 42 ];
         %tmp.8 = invoke %tmp.5 %tmp.6(%tmp.7);
         invoke %tmp.1 %tmp.2(%tmp.8);
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_16_40_18_4_stop:
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_21_40_23_4_stop:
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 23; @symbol_functiondef = [onShow,23,13,19]; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 28; @symbol_functiondef = [onShow,28,13,19]; ]
     function onShow() as Void {
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 27; @symbol_functiondef = [onUpdate,27,13,21]; @symbol_param<0> = [dc,27,22,24]; @symbol_param<0>_type<0> = [Dc,27,28,30]; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 32; @symbol_functiondef = [onUpdate,32,13,21]; @symbol_param<0> = [dc,32,22,24]; @symbol_param<0>_type<0> = [Dc,32,28,30]; ]
     function onUpdate(dc as Dc) as Void {
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_start:
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 29 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_stop" ]
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 34 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_stop" ]
         %w.1 = local;
-        symbol [ w %w.1 29 12 13 ];
+        symbol [ w %w.1 34 12 13 ];
         %tmp.1 = lgetv %dc;
-        symbol [ dc %tmp.1 29 16 18 ];
-        symbol [ getWidth %tmp.2 29 19 27 ];
+        symbol [ dc %tmp.1 34 16 18 ];
+        symbol [ getWidth %tmp.2 34 19 27 ];
         %tmp.2 = getv function %tmp.1 :getWidth;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %w.1 %tmp.3;
-        symbol [ w %w.1 29 12 13 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 30 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_stop" ]
+        symbol [ w %w.1 34 12 13 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 35 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_stop" ]
         %h.2 = local;
-        symbol [ h %h.2 30 12 13 ];
+        symbol [ h %h.2 35 12 13 ];
         %tmp.4 = lgetv %dc;
-        symbol [ dc %tmp.4 30 16 18 ];
-        symbol [ getHeight %tmp.5 30 19 28 ];
+        symbol [ dc %tmp.4 35 16 18 ];
+        symbol [ getHeight %tmp.5 35 19 28 ];
         %tmp.5 = getv function %tmp.4 :getHeight;
         %tmp.6 = invoke %tmp.4 %tmp.5();
         lputv %h.2 %tmp.6;
-        symbol [ h %h.2 30 12 13 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 31 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_stop" ]
+        symbol [ h %h.2 35 12 13 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 36 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_stop" ]
         %cx.3 = local;
-        symbol [ cx %cx.3 31 12 14 ];
+        symbol [ cx %cx.3 36 12 14 ];
         %tmp.7 = lgetv %w.1;
-        symbol [ w %tmp.7 31 17 18 ];
+        symbol [ w %tmp.7 36 17 18 ];
         %tmp.8 = 2;
         %tmp.9 = div %tmp.7 %tmp.8;
         lputv %cx.3 %tmp.9;
-        symbol [ cx %cx.3 31 12 14 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 32 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_stop" ]
+        symbol [ cx %cx.3 36 12 14 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 37 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_stop" ]
         %cy.4 = local;
-        symbol [ cy %cy.4 32 12 14 ];
+        symbol [ cy %cy.4 37 12 14 ];
         %tmp.10 = lgetv %h.2;
-        symbol [ h %tmp.10 32 17 18 ];
+        symbol [ h %tmp.10 37 17 18 ];
         %tmp.11 = 2;
         %tmp.12 = div %tmp.10 %tmp.11;
         lputv %cy.4 %tmp.12;
-        symbol [ cy %cy.4 32 12 14 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 35 8 ]
+        symbol [ cy %cy.4 37 12 14 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 40 8 ]
         %tmp.13 = lgetv %dc;
-        symbol [ dc %tmp.13 35 8 10 ];
-        symbol [ setColor %tmp.14 35 11 19 ];
+        symbol [ dc %tmp.13 40 8 10 ];
+        symbol [ setColor %tmp.14 40 11 19 ];
         %tmp.14 = getv function %tmp.13 :setColor;
-        symbol [ Graphics %tmp.15 35 20 28 ];
+        symbol [ Graphics %tmp.15 40 20 28 ];
         %tmp.15 = getm $.Toybox.Graphics;
-        symbol [ COLOR_BLACK %tmp.16 35 29 40 ];
+        symbol [ COLOR_BLACK %tmp.16 40 29 40 ];
         %tmp.16 = getv %tmp.15 :COLOR_BLACK;
-        symbol [ Graphics %tmp.17 35 42 50 ];
+        symbol [ Graphics %tmp.17 40 42 50 ];
         %tmp.17 = getm $.Toybox.Graphics;
-        symbol [ COLOR_BLACK %tmp.18 35 51 62 ];
+        symbol [ COLOR_BLACK %tmp.18 40 51 62 ];
         %tmp.18 = getv %tmp.17 :COLOR_BLACK;
         invoke %tmp.13 %tmp.14(%tmp.16, %tmp.18);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 36 8 ]
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 41 8 ]
         %tmp.19 = lgetv %dc;
-        symbol [ dc %tmp.19 36 8 10 ];
-        symbol [ clear %tmp.20 36 11 16 ];
+        symbol [ dc %tmp.19 41 8 10 ];
+        symbol [ clear %tmp.20 41 11 16 ];
         %tmp.20 = getv function %tmp.19 :clear;
         invoke %tmp.19 %tmp.20();
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 38 8 ]
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 43 8 ]
         %tmp.21 = lgetv %dc;
-        symbol [ dc %tmp.21 38 8 10 ];
-        symbol [ setAntiAlias %tmp.22 38 11 23 ];
+        symbol [ dc %tmp.21 43 8 10 ];
+        symbol [ setAntiAlias %tmp.22 43 11 23 ];
         %tmp.22 = getv function %tmp.21 :setAntiAlias;
         %tmp.23 = true;
         invoke %tmp.21 %tmp.22(%tmp.23);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 40 8 ]
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 45 8 ]
         %tmp.24 = self;
-        symbol [ drawBattery %tmp.25 40 8 19 ];
+        symbol [ drawBattery %tmp.25 45 8 19 ];
         %tmp.25 = getv function %tmp.24 :drawBattery;
         %tmp.26 = lgetv %dc;
-        symbol [ dc %tmp.26 40 20 22 ];
+        symbol [ dc %tmp.26 45 20 22 ];
         %tmp.27 = lgetv %cx.3;
-        symbol [ cx %tmp.27 40 24 26 ];
+        symbol [ cx %tmp.27 45 24 26 ];
         %tmp.28 = lgetv %cy.4;
-        symbol [ cy %tmp.28 40 28 30 ];
+        symbol [ cy %tmp.28 45 28 30 ];
         %tmp.29 = lgetv %w.1;
-        symbol [ w %tmp.29 40 33 34 ];
+        symbol [ w %tmp.29 45 33 34 ];
         %tmp.30 = 2;
         %tmp.31 = div %tmp.29 %tmp.30;
         %tmp.32 = 8;
         %tmp.33 = sub %tmp.31 %tmp.32;
         invoke %tmp.24 %tmp.25(%tmp.26, %tmp.27, %tmp.28, %tmp.33);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 41 8 ]
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 46 8 ]
         %tmp.34 = self;
-        symbol [ drawTime %tmp.35 41 8 16 ];
+        symbol [ drawTime %tmp.35 46 8 16 ];
         %tmp.35 = getv function %tmp.34 :drawTime;
         %tmp.36 = lgetv %dc;
-        symbol [ dc %tmp.36 41 17 19 ];
+        symbol [ dc %tmp.36 46 17 19 ];
         %tmp.37 = lgetv %cx.3;
-        symbol [ cx %tmp.37 41 21 23 ];
+        symbol [ cx %tmp.37 46 21 23 ];
         %tmp.38 = lgetv %cy.4;
-        symbol [ cy %tmp.38 41 25 27 ];
+        symbol [ cy %tmp.38 46 25 27 ];
         invoke %tmp.34 %tmp.35(%tmp.36, %tmp.37, %tmp.38);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 42 8 ]
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 47 8 ]
         %tmp.39 = self;
-        symbol [ drawDate %tmp.40 42 8 16 ];
+        symbol [ drawDate %tmp.40 47 8 16 ];
         %tmp.40 = getv function %tmp.39 :drawDate;
         %tmp.41 = lgetv %dc;
-        symbol [ dc %tmp.41 42 17 19 ];
+        symbol [ dc %tmp.41 47 17 19 ];
         %tmp.42 = lgetv %cx.3;
-        symbol [ cx %tmp.42 42 21 23 ];
+        symbol [ cx %tmp.42 47 21 23 ];
         %tmp.43 = lgetv %cy.4;
-        symbol [ cy %tmp.43 42 25 27 ];
+        symbol [ cy %tmp.43 47 25 27 ];
         %tmp.44 = lgetv %h.2;
-        symbol [ h %tmp.44 42 29 30 ];
+        symbol [ h %tmp.44 47 29 30 ];
         invoke %tmp.39 %tmp.40(%tmp.41, %tmp.42, %tmp.43, %tmp.44);
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_27_40_43_4_stop:
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_32_40_48_4_stop:
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 48; @symbol_functiondef = [onHide,48,13,19]; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 53; @symbol_functiondef = [onHide,53,13,19]; ]
     function onHide() as Void {
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_53_30_55_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 54 8 ]
+        %tmp.1 = self;
+        symbol [ stopAnim %tmp.2 54 8 16 ];
+        %tmp.2 = getv function %tmp.1 :stopAnim;
+        invoke %tmp.1 %tmp.2();
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_53_30_55_4_stop:
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 52; @symbol_functiondef = [onExitSleep,52,13,24]; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 58; @symbol_functiondef = [onExitSleep,58,13,24]; ]
     function onExitSleep() as Void {
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_58_35_60_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 59 8 ]
+        %tmp.1 = self;
+        symbol [ startAnim %tmp.2 59 8 17 ];
+        %tmp.2 = getv function %tmp.1 :startAnim;
+        invoke %tmp.1 %tmp.2();
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_58_35_60_4_stop:
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 56; @symbol_functiondef = [onEnterSleep,56,13,25]; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 63; @symbol_functiondef = [onEnterSleep,63,13,25]; ]
     function onEnterSleep() as Void {
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_63_36_67_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 64 8 ]
+        %tmp.1 = self;
+        symbol [ stopAnim %tmp.2 64 8 16 ];
+        %tmp.2 = getv function %tmp.1 :stopAnim;
+        invoke %tmp.1 %tmp.2();
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 65 8 ]
+        %tmp.3 = 1.0;
+        symbol [ _progress ? 65 8 17 ];
+        putv self :_progress %tmp.3;
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 66 8 ]
+        symbol [ WatchUi %tmp.4 66 8 15 ];
+        %tmp.4 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.5 66 16 29 ];
+        %tmp.5 = getv function %tmp.4 :requestUpdate;
+        invoke %tmp.4 %tmp.5();
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_63_36_67_4_stop:
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 60; @symbol_functiondef = [drawTime,60,13,21]; @symbol_param<0> = [dc,60,22,24]; @symbol_param<0>_type<0> = [Dc,60,28,30]; @symbol_param<1> = [cx,60,32,34]; @symbol_param<1>_type<0> = [Number,60,38,44]; @symbol_param<2> = [cy,60,46,48]; @symbol_param<2>_type<0> = [Number,60,52,58]; ]
-    function drawTime(dc as Dc, cx as Number, cy as Number) as Void {
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_60_68_71_4_start:
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 61 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_60_68_71_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_60_68_71_4_stop" ]
-        %clock.1 = local;
-        symbol [ clock %clock.1 61 12 17 ];
-        symbol [ System %tmp.1 61 20 26 ];
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 69; @symbol_functiondef = [startAnim,69,13,22]; ]
+    function startAnim() as Void {
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_69_33_75_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 70 8 ]
+        %tmp.1 = self;
+        symbol [ stopAnim %tmp.2 70 8 16 ];
+        %tmp.2 = getv function %tmp.1 :stopAnim;
+        invoke %tmp.1 %tmp.2();
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 71 8 ]
+        %tmp.3 = 0.0;
+        symbol [ _progress ? 71 8 17 ];
+        putv self :_progress %tmp.3;
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 72 8 ]
+        symbol [ System %tmp.4 72 19 25 ];
+        %tmp.4 = getm $.Toybox.System;
+        symbol [ getTimer %tmp.5 72 26 34 ];
+        %tmp.5 = getv function %tmp.4 :getTimer;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        symbol [ _startMs ? 72 8 16 ];
+        putv self :_startMs %tmp.6;
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 73 8 ]
+        symbol [ Timer %tmp.9 73 21 26 ];
+        %tmp.9 = getm $.Toybox.Timer;
+        symbol [ Timer %tmp.10 73 27 32 ];
+        %tmp.10 = getv function ? %tmp.9 :Timer;
+        %tmp.7 = newc %tmp.10 ();
+        symbol [ _timer ? 73 8 14 ];
+        putv self :_timer %tmp.7;
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 74 8 ]
+        symbol [ _timer %tmp.12 74 8 14 ];
+        %tmp.12 = getv ? :_timer;
+        symbol [ start %tmp.13 74 15 20 ];
+        %tmp.13 = getv function %tmp.12 :start;
+        %tmp.14 = self;
+        symbol [ method %tmp.15 74 21 27 ];
+        %tmp.15 = getv function %tmp.14 :method;
+        %tmp.17 = const :onTick;
+        symbol [ onTick %tmp.17 74 29 35 const ];
+        %tmp.18 = invoke %tmp.14 %tmp.15(%tmp.17);
+        %tmp.19 = 40;
+        %tmp.20 = true;
+        invoke %tmp.12 %tmp.13(%tmp.18, %tmp.19, %tmp.20);
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_69_33_75_4_stop:
+    }
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 77; @symbol_functiondef = [stopAnim,77,13,21]; ]
+    function stopAnim() as Void {
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_77_32_82_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 78 8 ]
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_78_8_81_8_if_stmt:
+        symbol [ _timer %tmp.2 78 12 18 ];
+        %tmp.2 = getv ? :_timer;
+        %tmp.3 = null;
+        %tmp.4 = ne %tmp.2 %tmp.3;
+        bf %tmp.4 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_78_8_81_8_if_end;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_78_8_81_8_if_true:
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_78_28_81_8_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 79 12 ]
+        symbol [ _timer %tmp.6 79 12 18 ];
+        %tmp.6 = getv ? :_timer;
+        %tmp.7 = as %tmp.6 { (!Null) };
+        symbol [ stop %tmp.8 79 19 23 ];
+        %tmp.8 = getv function %tmp.7 :stop;
+        invoke %tmp.7 %tmp.8();
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 80 12 ]
+        %tmp.9 = null;
+        symbol [ _timer ? 80 12 18 ];
+        putv self :_timer %tmp.9;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_78_28_81_8_stop:
+        goto @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_78_8_81_8_if_end;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_78_8_81_8_if_end:
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_77_32_82_4_stop:
+    }
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 84; @symbol_functiondef = [onTick,84,13,19]; ]
+    function onTick() as Void {
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_84_30_92_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 85 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_84_30_92_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_84_30_92_4_stop" ]
+        %t.1 = local;
+        symbol [ t %t.1 85 12 13 ];
+        symbol [ System %tmp.1 85 17 23 ];
         %tmp.1 = getm $.Toybox.System;
-        symbol [ getClockTime %tmp.2 61 27 39 ];
+        symbol [ getTimer %tmp.2 85 24 32 ];
+        %tmp.2 = getv function %tmp.1 :getTimer;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        symbol [ _startMs %tmp.5 85 37 45 ];
+        %tmp.5 = getv ? :_startMs;
+        %tmp.6 = sub %tmp.3 %tmp.5;
+        symbol [ toFloat %tmp.7 85 47 54 ];
+        %tmp.7 = getv function %tmp.6 :toFloat;
+        %tmp.8 = invoke %tmp.6 %tmp.7();
+        symbol [ _animMs %tmp.10 85 59 66 ];
+        %tmp.10 = getv ? :_animMs;
+        %tmp.11 = div %tmp.8 %tmp.10;
+        lputv %t.1 %tmp.11;
+        symbol [ t %t.1 85 12 13 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 86 8 ]
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_86_8_89_8_if_stmt:
+        %tmp.12 = lgetv %t.1;
+        symbol [ t %tmp.12 86 12 13 ];
+        %tmp.13 = 1.0;
+        %tmp.14 = gte %tmp.12 %tmp.13;
+        bf %tmp.14 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_86_8_89_8_if_end;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_86_8_89_8_if_true:
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_86_22_89_8_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 87 12 ]
+        %tmp.15 = 1.0;
+        lputv %t.1 %tmp.15;
+        symbol [ t %t.1 87 12 13 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 88 12 ]
+        %tmp.16 = self;
+        symbol [ stopAnim %tmp.17 88 12 20 ];
+        %tmp.17 = getv function %tmp.16 :stopAnim;
+        invoke %tmp.16 %tmp.17();
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_86_22_89_8_stop:
+        goto @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_86_8_89_8_if_end;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_86_8_89_8_if_end:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 90 8 ]
+        %tmp.18 = 1.0;
+        symbol [ Math %tmp.19 90 26 30 ];
+        %tmp.19 = getm $.Toybox.Math;
+        symbol [ pow %tmp.20 90 31 34 ];
+        %tmp.20 = getv function %tmp.19 :pow;
+        %tmp.21 = 1.0;
+        %tmp.22 = lgetv %t.1;
+        symbol [ t %tmp.22 90 41 42 ];
+        %tmp.23 = sub %tmp.21 %tmp.22;
+        %tmp.24 = 3;
+        %tmp.25 = invoke %tmp.19 %tmp.20(%tmp.23, %tmp.24);
+        %tmp.26 = sub %tmp.18 %tmp.25;
+        symbol [ _progress ? 90 8 17 ];
+        putv self :_progress %tmp.26;
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 91 8 ]
+        symbol [ WatchUi %tmp.27 91 8 15 ];
+        %tmp.27 = getm $.Toybox.WatchUi;
+        symbol [ requestUpdate %tmp.28 91 16 29 ];
+        %tmp.28 = getv function %tmp.27 :requestUpdate;
+        invoke %tmp.27 %tmp.28();
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_84_30_92_4_stop:
+    }
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 95; @symbol_functiondef = [drawTime,95,13,21]; @symbol_param<0> = [dc,95,22,24]; @symbol_param<0>_type<0> = [Dc,95,28,30]; @symbol_param<1> = [cx,95,32,34]; @symbol_param<1>_type<0> = [Number,95,38,44]; @symbol_param<2> = [cy,95,46,48]; @symbol_param<2>_type<0> = [Number,95,52,58]; ]
+    function drawTime(dc as Dc, cx as Number, cy as Number) as Void {
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_95_68_106_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 96 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_95_68_106_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_95_68_106_4_stop" ]
+        %clock.1 = local;
+        symbol [ clock %clock.1 96 12 17 ];
+        symbol [ System %tmp.1 96 20 26 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ getClockTime %tmp.2 96 27 39 ];
         %tmp.2 = getv function %tmp.1 :getClockTime;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %clock.1 %tmp.3;
-        symbol [ clock %clock.1 61 12 17 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 62 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_60_68_71_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_60_68_71_4_stop" ]
+        symbol [ clock %clock.1 96 12 17 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 97 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_95_68_106_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_95_68_106_4_stop" ]
         %timeStr.2 = local;
-        symbol [ timeStr %timeStr.2 62 12 19 ];
-        symbol [ Lang %tmp.4 62 22 26 ];
+        symbol [ timeStr %timeStr.2 97 12 19 ];
+        symbol [ Lang %tmp.4 97 22 26 ];
         %tmp.4 = getm $.Toybox.Lang;
-        symbol [ format %tmp.5 62 27 33 ];
+        symbol [ format %tmp.5 97 27 33 ];
         %tmp.5 = getv function %tmp.4 :format;
         %tmp.6 = "$1$:$2$";
         %tmp.7 = newa 2;
         %tmp.8 = lgetv %clock.1;
-        symbol [ clock %tmp.8 63 12 17 ];
-        symbol [ hour %tmp.9 63 18 22 ];
+        symbol [ clock %tmp.8 98 12 17 ];
+        symbol [ hour %tmp.9 98 18 22 ];
         %tmp.9 = getv %tmp.8 :hour;
-        symbol [ format %tmp.10 63 23 29 ];
+        symbol [ format %tmp.10 98 23 29 ];
         %tmp.10 = getv function %tmp.9 :format;
         %tmp.11 = "%02d";
         %tmp.12 = invoke %tmp.9 %tmp.10(%tmp.11);
         %tmp.13 = dup %tmp.7;
         %tmp.14 = aputv %tmp.13 0 %tmp.12;
         %tmp.15 = lgetv %clock.1;
-        symbol [ clock %tmp.15 64 12 17 ];
-        symbol [ min %tmp.16 64 18 21 ];
+        symbol [ clock %tmp.15 99 12 17 ];
+        symbol [ min %tmp.16 99 18 21 ];
         %tmp.16 = getv %tmp.15 :min;
-        symbol [ format %tmp.17 64 22 28 ];
+        symbol [ format %tmp.17 99 22 28 ];
         %tmp.17 = getv function %tmp.16 :format;
         %tmp.18 = "%02d";
         %tmp.19 = invoke %tmp.16 %tmp.17(%tmp.18);
@@ -224,75 +408,75 @@ C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_60_6
         %tmp.21 = aputv %tmp.20 1 %tmp.19;
         %tmp.22 = invoke %tmp.4 %tmp.5(%tmp.6, %tmp.21);
         lputv %timeStr.2 %tmp.22;
-        symbol [ timeStr %timeStr.2 62 12 19 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 68 8 ]
+        symbol [ timeStr %timeStr.2 97 12 19 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 103 8 ]
         %tmp.23 = lgetv %dc;
-        symbol [ dc %tmp.23 68 8 10 ];
-        symbol [ setColor %tmp.24 68 11 19 ];
+        symbol [ dc %tmp.23 103 8 10 ];
+        symbol [ setColor %tmp.24 103 11 19 ];
         %tmp.24 = getv function %tmp.23 :setColor;
-        symbol [ Graphics %tmp.25 68 20 28 ];
+        symbol [ Graphics %tmp.25 103 20 28 ];
         %tmp.25 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.26 68 29 40 ];
+        symbol [ COLOR_WHITE %tmp.26 103 29 40 ];
         %tmp.26 = getv %tmp.25 :COLOR_WHITE;
-        symbol [ Graphics %tmp.27 68 42 50 ];
+        symbol [ Graphics %tmp.27 103 42 50 ];
         %tmp.27 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.28 68 51 68 ];
+        symbol [ COLOR_TRANSPARENT %tmp.28 103 51 68 ];
         %tmp.28 = getv %tmp.27 :COLOR_TRANSPARENT;
         invoke %tmp.23 %tmp.24(%tmp.26, %tmp.28);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 69 8 ]
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 104 8 ]
         %tmp.29 = lgetv %dc;
-        symbol [ dc %tmp.29 69 8 10 ];
-        symbol [ drawText %tmp.30 69 11 19 ];
+        symbol [ dc %tmp.29 104 8 10 ];
+        symbol [ drawText %tmp.30 104 11 19 ];
         %tmp.30 = getv function %tmp.29 :drawText;
         %tmp.31 = lgetv %cx;
-        symbol [ cx %tmp.31 69 20 22 ];
+        symbol [ cx %tmp.31 104 20 22 ];
         %tmp.32 = lgetv %cy;
-        symbol [ cy %tmp.32 69 24 26 ];
-        symbol [ Graphics %tmp.33 69 28 36 ];
+        symbol [ cy %tmp.32 104 24 26 ];
+        symbol [ Graphics %tmp.33 104 28 36 ];
         %tmp.33 = getm $.Toybox.Graphics;
-        symbol [ FONT_NUMBER_MEDIUM %tmp.34 69 37 55 ];
+        symbol [ FONT_NUMBER_MEDIUM %tmp.34 104 37 55 ];
         %tmp.34 = getv %tmp.33 :FONT_NUMBER_MEDIUM;
         %tmp.35 = lgetv %timeStr.2;
-        symbol [ timeStr %tmp.35 69 57 64 ];
-        symbol [ Graphics %tmp.36 70 12 20 ];
+        symbol [ timeStr %tmp.35 104 57 64 ];
+        symbol [ Graphics %tmp.36 105 12 20 ];
         %tmp.36 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.37 70 21 40 ];
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.37 105 21 40 ];
         %tmp.37 = getv %tmp.36 :TEXT_JUSTIFY_CENTER;
-        symbol [ Graphics %tmp.38 70 43 51 ];
+        symbol [ Graphics %tmp.38 105 43 51 ];
         %tmp.38 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_VCENTER %tmp.39 70 52 72 ];
+        symbol [ TEXT_JUSTIFY_VCENTER %tmp.39 105 52 72 ];
         %tmp.39 = getv %tmp.38 :TEXT_JUSTIFY_VCENTER;
         %tmp.40 = bitor %tmp.37 %tmp.39;
         invoke %tmp.29 %tmp.30(%tmp.31, %tmp.32, %tmp.34, %tmp.35, %tmp.40);
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_60_68_71_4_stop:
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_95_68_106_4_stop:
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 74; @symbol_functiondef = [drawDate,74,13,21]; @symbol_param<0> = [dc,74,22,24]; @symbol_param<0>_type<0> = [Dc,74,28,30]; @symbol_param<1> = [cx,74,32,34]; @symbol_param<1>_type<0> = [Number,74,38,44]; @symbol_param<2> = [cy,74,46,48]; @symbol_param<2>_type<0> = [Number,74,52,58]; @symbol_param<3> = [h,74,60,61]; @symbol_param<3>_type<0> = [Number,74,65,71]; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 109; @symbol_functiondef = [drawDate,109,13,21]; @symbol_param<0> = [dc,109,22,24]; @symbol_param<0>_type<0> = [Dc,109,28,30]; @symbol_param<1> = [cx,109,32,34]; @symbol_param<1>_type<0> = [Number,109,38,44]; @symbol_param<2> = [cy,109,46,48]; @symbol_param<2>_type<0> = [Number,109,52,58]; @symbol_param<3> = [h,109,60,61]; @symbol_param<3>_type<0> = [Number,109,65,71]; ]
     function drawDate(dc as Dc, cx as Number, cy as Number, h as Number) as Void {
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_start:
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 75 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_stop" ]
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 110 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_stop" ]
         %now.1 = local;
-        symbol [ now %now.1 75 12 15 ];
-        symbol [ Gregorian %tmp.1 75 18 27 ];
+        symbol [ now %now.1 110 12 15 ];
+        symbol [ Gregorian %tmp.1 110 18 27 ];
         %tmp.1 = getm $.Toybox.Time.Gregorian;
-        symbol [ info %tmp.2 75 28 32 ];
+        symbol [ info %tmp.2 110 28 32 ];
         %tmp.2 = getv function %tmp.1 :info;
-        symbol [ Time %tmp.3 75 33 37 ];
+        symbol [ Time %tmp.3 110 33 37 ];
         %tmp.3 = getm $.Toybox.Time;
-        symbol [ now %tmp.4 75 38 41 ];
+        symbol [ now %tmp.4 110 38 41 ];
         %tmp.4 = getv function %tmp.3 :now;
         %tmp.5 = invoke %tmp.3 %tmp.4();
-        symbol [ Time %tmp.6 75 45 49 ];
+        symbol [ Time %tmp.6 110 45 49 ];
         %tmp.6 = getm $.Toybox.Time;
-        symbol [ FORMAT_SHORT %tmp.7 75 50 62 ];
+        symbol [ FORMAT_SHORT %tmp.7 110 50 62 ];
         %tmp.7 = getv %tmp.6 :FORMAT_SHORT;
         %tmp.8 = invoke %tmp.1 %tmp.2(%tmp.5, %tmp.7);
         lputv %now.1 %tmp.8;
-        symbol [ now %now.1 75 12 15 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 77 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_stop" ]
+        symbol [ now %now.1 110 12 15 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 112 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_stop" ]
         %days.2 = local;
-        symbol [ days %days.2 77 12 16 ];
+        symbol [ days %days.2 112 12 16 ];
         %tmp.9 = newa 7;
         %tmp.10 = "Sunday";
         %tmp.11 = dup %tmp.9;
@@ -316,11 +500,11 @@ C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_8
         %tmp.29 = dup %tmp.27;
         %tmp.30 = aputv %tmp.29 6 %tmp.28;
         lputv %days.2 %tmp.30;
-        symbol [ days %days.2 77 12 16 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 79 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_stop" ]
+        symbol [ days %days.2 112 12 16 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 114 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_stop" ]
         %months.3 = local;
-        symbol [ months %months.3 79 12 18 ];
+        symbol [ months %months.3 114 12 18 ];
         %tmp.31 = newa 12;
         %tmp.32 = "January";
         %tmp.33 = dup %tmp.31;
@@ -359,22 +543,22 @@ C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_8
         %tmp.66 = dup %tmp.64;
         %tmp.67 = aputv %tmp.66 11 %tmp.65;
         lputv %months.3 %tmp.67;
-        symbol [ months %months.3 79 12 18 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 82 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_stop" ]
+        symbol [ months %months.3 114 12 18 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 117 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_stop" ]
         %dateStr.4 = local;
-        symbol [ dateStr %dateStr.4 82 12 19 ];
-        symbol [ Lang %tmp.68 82 22 26 ];
+        symbol [ dateStr %dateStr.4 117 12 19 ];
+        symbol [ Lang %tmp.68 117 22 26 ];
         %tmp.68 = getm $.Toybox.Lang;
-        symbol [ format %tmp.69 82 27 33 ];
+        symbol [ format %tmp.69 117 27 33 ];
         %tmp.69 = getv function %tmp.68 :format;
         %tmp.70 = "$1$, $2$ $3$";
         %tmp.71 = newa 3;
         %tmp.72 = lgetv %days.2;
-        symbol [ days %tmp.72 83 12 16 ];
+        symbol [ days %tmp.72 118 12 16 ];
         %tmp.73 = lgetv %now.1;
-        symbol [ now %tmp.73 83 17 20 ];
-        symbol [ day_of_week %tmp.74 83 21 32 ];
+        symbol [ now %tmp.73 118 17 20 ];
+        symbol [ day_of_week %tmp.74 118 21 32 ];
         %tmp.74 = getv %tmp.73 :day_of_week;
         %tmp.75 = 1;
         %tmp.76 = sub %tmp.74 %tmp.75;
@@ -382,16 +566,16 @@ C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_8
         %tmp.78 = dup %tmp.71;
         %tmp.79 = aputv %tmp.78 0 %tmp.77;
         %tmp.80 = lgetv %now.1;
-        symbol [ now %tmp.80 84 12 15 ];
-        symbol [ day %tmp.81 84 16 19 ];
+        symbol [ now %tmp.80 119 12 15 ];
+        symbol [ day %tmp.81 119 16 19 ];
         %tmp.81 = getv %tmp.80 :day;
         %tmp.82 = dup %tmp.79;
         %tmp.83 = aputv %tmp.82 1 %tmp.81;
         %tmp.84 = lgetv %months.3;
-        symbol [ months %tmp.84 85 12 18 ];
+        symbol [ months %tmp.84 120 12 18 ];
         %tmp.85 = lgetv %now.1;
-        symbol [ now %tmp.85 85 19 22 ];
-        symbol [ month %tmp.86 85 23 28 ];
+        symbol [ now %tmp.85 120 19 22 ];
+        symbol [ month %tmp.86 120 23 28 ];
         %tmp.86 = getv %tmp.85 :month;
         %tmp.87 = 1;
         %tmp.88 = sub %tmp.86 %tmp.87;
@@ -400,353 +584,364 @@ C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_8
         %tmp.91 = aputv %tmp.90 2 %tmp.89;
         %tmp.92 = invoke %tmp.68 %tmp.69(%tmp.70, %tmp.91);
         lputv %dateStr.4 %tmp.92;
-        symbol [ dateStr %dateStr.4 82 12 19 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 88 8 ]
+        symbol [ dateStr %dateStr.4 117 12 19 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 123 8 ]
         %tmp.93 = lgetv %dc;
-        symbol [ dc %tmp.93 88 8 10 ];
-        symbol [ setColor %tmp.94 88 11 19 ];
+        symbol [ dc %tmp.93 123 8 10 ];
+        symbol [ setColor %tmp.94 123 11 19 ];
         %tmp.94 = getv function %tmp.93 :setColor;
         %tmp.95 = 0x898989;
-        symbol [ Graphics %tmp.96 88 30 38 ];
+        symbol [ Graphics %tmp.96 123 30 38 ];
         %tmp.96 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.97 88 39 56 ];
+        symbol [ COLOR_TRANSPARENT %tmp.97 123 39 56 ];
         %tmp.97 = getv %tmp.96 :COLOR_TRANSPARENT;
         invoke %tmp.93 %tmp.94(%tmp.95, %tmp.97);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 89 8 ]
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 124 8 ]
         %tmp.98 = lgetv %dc;
-        symbol [ dc %tmp.98 89 8 10 ];
-        symbol [ drawText %tmp.99 89 11 19 ];
+        symbol [ dc %tmp.98 124 8 10 ];
+        symbol [ drawText %tmp.99 124 11 19 ];
         %tmp.99 = getv function %tmp.98 :drawText;
         %tmp.100 = lgetv %cx;
-        symbol [ cx %tmp.100 89 20 22 ];
+        symbol [ cx %tmp.100 124 20 22 ];
         %tmp.101 = lgetv %cy;
-        symbol [ cy %tmp.101 89 24 26 ];
+        symbol [ cy %tmp.101 124 24 26 ];
         %tmp.102 = lgetv %h;
-        symbol [ h %tmp.102 89 30 31 ];
-        %tmp.103 = 0.2;
+        symbol [ h %tmp.102 124 30 31 ];
+        %tmp.103 = 0.15;
         %tmp.104 = mul %tmp.102 %tmp.103;
         %tmp.105 = add %tmp.101 %tmp.104;
-        symbol [ Graphics %tmp.106 89 40 48 ];
+        symbol [ Graphics %tmp.106 124 41 49 ];
         %tmp.106 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.107 89 49 59 ];
+        symbol [ FONT_XTINY %tmp.107 124 50 60 ];
         %tmp.107 = getv %tmp.106 :FONT_XTINY;
         %tmp.108 = lgetv %dateStr.4;
-        symbol [ dateStr %tmp.108 89 61 68 ];
-        symbol [ Graphics %tmp.109 90 12 20 ];
+        symbol [ dateStr %tmp.108 124 62 69 ];
+        symbol [ Graphics %tmp.109 125 12 20 ];
         %tmp.109 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.110 90 21 40 ];
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.110 125 21 40 ];
         %tmp.110 = getv %tmp.109 :TEXT_JUSTIFY_CENTER;
-        symbol [ Graphics %tmp.111 90 43 51 ];
+        symbol [ Graphics %tmp.111 125 43 51 ];
         %tmp.111 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_VCENTER %tmp.112 90 52 72 ];
+        symbol [ TEXT_JUSTIFY_VCENTER %tmp.112 125 52 72 ];
         %tmp.112 = getv %tmp.111 :TEXT_JUSTIFY_VCENTER;
         %tmp.113 = bitor %tmp.110 %tmp.112;
         invoke %tmp.98 %tmp.99(%tmp.100, %tmp.105, %tmp.107, %tmp.108, %tmp.113);
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_74_81_91_4_stop:
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_109_81_126_4_stop:
     }
-    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 93; @symbol_functiondef = [drawBattery,93,13,24]; @symbol_param<0> = [dc,93,25,27]; @symbol_param<0>_type<0> = [Dc,93,31,33]; @symbol_param<1> = [cx,93,35,37]; @symbol_param<1>_type<0> = [Number,93,41,47]; @symbol_param<2> = [cy,93,49,51]; @symbol_param<2>_type<0> = [Number,93,55,61]; @symbol_param<3> = [r,93,63,64]; @symbol_param<3>_type<0> = [Number,93,68,74]; ]
+    [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 128; @symbol_functiondef = [drawBattery,128,13,24]; @symbol_param<0> = [dc,128,25,27]; @symbol_param<0>_type<0> = [Dc,128,31,33]; @symbol_param<1> = [cx,128,35,37]; @symbol_param<1>_type<0> = [Number,128,41,47]; @symbol_param<2> = [cy,128,49,51]; @symbol_param<2>_type<0> = [Number,128,55,61]; @symbol_param<3> = [r,128,63,64]; @symbol_param<3>_type<0> = [Number,128,68,74]; ]
     function drawBattery(dc as Dc, cx as Number, cy as Number, r as Number) as Void {
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start:
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 94 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop" ]
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 129 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
         %batt.1 = local;
-        symbol [ batt %batt.1 94 12 16 ];
-        symbol [ System %tmp.1 94 19 25 ];
+        symbol [ batt %batt.1 129 12 16 ];
+        symbol [ System %tmp.1 129 19 25 ];
         %tmp.1 = getm $.Toybox.System;
-        symbol [ getSystemStats %tmp.2 94 26 40 ];
+        symbol [ getSystemStats %tmp.2 129 26 40 ];
         %tmp.2 = getv function %tmp.1 :getSystemStats;
         %tmp.3 = invoke %tmp.1 %tmp.2();
-        symbol [ battery %tmp.4 94 43 50 ];
+        symbol [ battery %tmp.4 129 43 50 ];
         %tmp.4 = getv %tmp.3 :battery;
         lputv %batt.1 %tmp.4;
-        symbol [ batt %batt.1 94 12 16 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 95 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop" ]
-        %endAngle.2 = local;
-        symbol [ endAngle %endAngle.2 95 12 20 ];
-        %tmp.5 = 90;
-        %tmp.6 = lgetv %batt.1;
-        symbol [ batt %tmp.6 95 29 33 ];
-        %tmp.7 = 3.6;
-        %tmp.8 = mul %tmp.6 %tmp.7;
-        %tmp.9 = sub %tmp.5 %tmp.8;
-        lputv %endAngle.2 %tmp.9;
-        symbol [ endAngle %endAngle.2 95 12 20 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 96 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop" ]
-        %color.3 = local;
-        symbol [ color %color.3 96 12 17 ];
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_begin:
-        %tmp.10 = lgetv %batt.1;
-        symbol [ batt %tmp.10 96 20 24 ];
-        %tmp.11 = 20;
-        %tmp.12 = gt %tmp.10 %tmp.11;
-        bf %tmp.12 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_else_false;
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_true:
-        %tmp.13 = 0x00FF88;
-        push %tmp.13;
-        goto @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_end;
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_else_false:
-        symbol [ Graphics %tmp.14 96 43 51 ];
-        %tmp.14 = getm $.Toybox.Graphics;
-        symbol [ COLOR_RED %tmp.15 96 52 61 ];
-        %tmp.15 = getv %tmp.14 :COLOR_RED;
-        push %tmp.15;
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_end:
-        %tmp.16 = phi [%tmp.12 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_begin] [%tmp.13 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_true] [%tmp.15 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_else_false] [%tmp.16 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_96_20_96_52_end];
-        lputv %color.3 %tmp.16;
-        symbol [ color %color.3 96 12 17 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 98 8 ]
-        %tmp.17 = lgetv %dc;
-        symbol [ dc %tmp.17 98 8 10 ];
-        symbol [ setPenWidth %tmp.18 98 11 22 ];
-        %tmp.18 = getv function %tmp.17 :setPenWidth;
-        %tmp.19 = 8;
-        invoke %tmp.17 %tmp.18(%tmp.19);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 101 8 ]
-        %tmp.20 = lgetv %dc;
-        symbol [ dc %tmp.20 101 8 10 ];
-        symbol [ setColor %tmp.21 101 11 19 ];
-        %tmp.21 = getv function %tmp.20 :setColor;
-        %tmp.22 = 0x222222;
-        symbol [ Graphics %tmp.23 101 30 38 ];
-        %tmp.23 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.24 101 39 56 ];
-        %tmp.24 = getv %tmp.23 :COLOR_TRANSPARENT;
-        invoke %tmp.20 %tmp.21(%tmp.22, %tmp.24);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 102 8 ]
-        %tmp.25 = lgetv %dc;
-        symbol [ dc %tmp.25 102 8 10 ];
-        symbol [ drawArc %tmp.26 102 11 18 ];
-        %tmp.26 = getv function %tmp.25 :drawArc;
-        %tmp.27 = lgetv %cx;
-        symbol [ cx %tmp.27 102 19 21 ];
-        %tmp.28 = lgetv %cy;
-        symbol [ cy %tmp.28 102 23 25 ];
-        %tmp.29 = lgetv %r;
-        symbol [ r %tmp.29 102 27 28 ];
-        symbol [ Graphics %tmp.30 102 30 38 ];
-        %tmp.30 = getm $.Toybox.Graphics;
-        symbol [ ARC_CLOCKWISE %tmp.31 102 39 52 ];
-        %tmp.31 = getv %tmp.30 :ARC_CLOCKWISE;
-        %tmp.32 = 90;
-        %tmp.33 = -270;
-        invoke %tmp.25 %tmp.26(%tmp.27, %tmp.28, %tmp.29, %tmp.31, %tmp.32, %tmp.33);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 105 8 ]
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_105_8_108_8_if_stmt:
-        %tmp.34 = lgetv %batt.1;
-        symbol [ batt %tmp.34 105 12 16 ];
-        %tmp.35 = 0;
-        %tmp.36 = gt %tmp.34 %tmp.35;
-        bf %tmp.36 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_105_8_108_8_if_end;
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_105_8_108_8_if_true:
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_105_22_108_8_start:
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 106 12 ]
-        %tmp.37 = lgetv %dc;
-        symbol [ dc %tmp.37 106 12 14 ];
-        symbol [ setColor %tmp.38 106 15 23 ];
-        %tmp.38 = getv function %tmp.37 :setColor;
-        %tmp.39 = lgetv %color.3;
-        symbol [ color %tmp.39 106 24 29 ];
-        symbol [ Graphics %tmp.40 106 31 39 ];
-        %tmp.40 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.41 106 40 57 ];
-        %tmp.41 = getv %tmp.40 :COLOR_TRANSPARENT;
-        invoke %tmp.37 %tmp.38(%tmp.39, %tmp.41);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 107 12 ]
-        %tmp.42 = lgetv %dc;
-        symbol [ dc %tmp.42 107 12 14 ];
-        symbol [ drawArc %tmp.43 107 15 22 ];
-        %tmp.43 = getv function %tmp.42 :drawArc;
-        %tmp.44 = lgetv %cx;
-        symbol [ cx %tmp.44 107 23 25 ];
-        %tmp.45 = lgetv %cy;
-        symbol [ cy %tmp.45 107 27 29 ];
-        %tmp.46 = lgetv %r;
-        symbol [ r %tmp.46 107 31 32 ];
-        symbol [ Graphics %tmp.47 107 34 42 ];
-        %tmp.47 = getm $.Toybox.Graphics;
-        symbol [ ARC_CLOCKWISE %tmp.48 107 43 56 ];
-        %tmp.48 = getv %tmp.47 :ARC_CLOCKWISE;
-        %tmp.49 = 90;
-        %tmp.50 = lgetv %endAngle.2;
-        symbol [ endAngle %tmp.50 107 62 70 ];
-        invoke %tmp.42 %tmp.43(%tmp.44, %tmp.45, %tmp.46, %tmp.48, %tmp.49, %tmp.50);
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_105_22_108_8_stop:
-        goto @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_105_8_108_8_if_end;
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_105_8_108_8_if_end:
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 111 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop" ]
-        %rad.4 = local;
-        symbol [ rad %rad.4 111 12 15 ];
-        %tmp.51 = lgetv %endAngle.2;
-        symbol [ endAngle %tmp.51 111 18 26 ];
-        symbol [ Math %tmp.52 111 29 33 ];
-        %tmp.52 = getm $.Toybox.Math;
-        symbol [ PI %tmp.53 111 34 36 ];
-        %tmp.53 = getv %tmp.52 :PI;
-        %tmp.54 = mul %tmp.51 %tmp.53;
-        %tmp.55 = 180.0;
-        %tmp.56 = div %tmp.54 %tmp.55;
-        lputv %rad.4 %tmp.56;
-        symbol [ rad %rad.4 111 12 15 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 112 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop" ]
-        %tipX.5 = local;
-        symbol [ tipX %tipX.5 112 12 16 ];
-        %tmp.57 = lgetv %cx;
-        symbol [ cx %tmp.57 112 19 21 ];
-        %tmp.58 = lgetv %r;
-        symbol [ r %tmp.58 112 24 25 ];
-        symbol [ Math %tmp.59 112 28 32 ];
-        %tmp.59 = getm $.Toybox.Math;
-        symbol [ cos %tmp.60 112 33 36 ];
-        %tmp.60 = getv function %tmp.59 :cos;
-        %tmp.61 = lgetv %rad.4;
-        symbol [ rad %tmp.61 112 37 40 ];
-        %tmp.62 = invoke %tmp.59 %tmp.60(%tmp.61);
-        %tmp.63 = mul %tmp.58 %tmp.62;
-        %tmp.64 = add %tmp.57 %tmp.63;
-        lputv %tipX.5 %tmp.64;
-        symbol [ tipX %tipX.5 112 12 16 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 113 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop" ]
-        %tipY.6 = local;
-        symbol [ tipY %tipY.6 113 12 16 ];
-        %tmp.65 = lgetv %cy;
-        symbol [ cy %tmp.65 113 19 21 ];
-        %tmp.66 = lgetv %r;
-        symbol [ r %tmp.66 113 24 25 ];
-        symbol [ Math %tmp.67 113 28 32 ];
-        %tmp.67 = getm $.Toybox.Math;
-        symbol [ sin %tmp.68 113 33 36 ];
-        %tmp.68 = getv function %tmp.67 :sin;
-        %tmp.69 = lgetv %rad.4;
-        symbol [ rad %tmp.69 113 37 40 ];
-        %tmp.70 = invoke %tmp.67 %tmp.68(%tmp.69);
-        %tmp.71 = mul %tmp.66 %tmp.70;
-        %tmp.72 = sub %tmp.65 %tmp.71;
-        lputv %tipY.6 %tmp.72;
-        symbol [ tipY %tipY.6 113 12 16 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 116 8 ]
-        %tmp.73 = lgetv %dc;
-        symbol [ dc %tmp.73 116 8 10 ];
-        symbol [ setColor %tmp.74 116 11 19 ];
-        %tmp.74 = getv function %tmp.73 :setColor;
-        symbol [ Graphics %tmp.75 116 20 28 ];
-        %tmp.75 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.76 116 29 40 ];
-        %tmp.76 = getv %tmp.75 :COLOR_WHITE;
-        symbol [ Graphics %tmp.77 116 42 50 ];
-        %tmp.77 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.78 116 51 68 ];
-        %tmp.78 = getv %tmp.77 :COLOR_TRANSPARENT;
-        invoke %tmp.73 %tmp.74(%tmp.76, %tmp.78);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 117 8 ]
-        %tmp.79 = lgetv %dc;
-        symbol [ dc %tmp.79 117 8 10 ];
-        symbol [ fillCircle %tmp.80 117 11 21 ];
-        %tmp.80 = getv function %tmp.79 :fillCircle;
-        %tmp.81 = lgetv %tipX.5;
-        symbol [ tipX %tmp.81 117 22 26 ];
-        %tmp.82 = lgetv %tipY.6;
-        symbol [ tipY %tmp.82 117 28 32 ];
-        %tmp.83 = 5;
-        invoke %tmp.79 %tmp.80(%tmp.81, %tmp.82, %tmp.83);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 120 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop" ]
-        %textR.7 = local;
-        symbol [ textR %textR.7 120 12 17 ];
-        %tmp.84 = lgetv %r;
-        symbol [ r %tmp.84 120 20 21 ];
-        %tmp.85 = 26;
-        %tmp.86 = sub %tmp.84 %tmp.85;
-        lputv %textR.7 %tmp.86;
-        symbol [ textR %textR.7 120 12 17 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 121 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop" ]
-        %textX.8 = local;
-        symbol [ textX %textX.8 121 12 17 ];
-        %tmp.87 = lgetv %cx;
-        symbol [ cx %tmp.87 121 20 22 ];
-        %tmp.88 = lgetv %textR.7;
-        symbol [ textR %tmp.88 121 25 30 ];
-        symbol [ Math %tmp.89 121 33 37 ];
-        %tmp.89 = getm $.Toybox.Math;
-        symbol [ cos %tmp.90 121 38 41 ];
-        %tmp.90 = getv function %tmp.89 :cos;
-        %tmp.91 = lgetv %rad.4;
-        symbol [ rad %tmp.91 121 42 45 ];
-        %tmp.92 = invoke %tmp.89 %tmp.90(%tmp.91);
-        %tmp.93 = mul %tmp.88 %tmp.92;
-        %tmp.94 = add %tmp.87 %tmp.93;
-        lputv %textX.8 %tmp.94;
-        symbol [ textX %textX.8 121 12 17 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 122 8 ]
-        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop" ]
-        %textY.9 = local;
-        symbol [ textY %textY.9 122 12 17 ];
-        %tmp.95 = lgetv %cy;
-        symbol [ cy %tmp.95 122 20 22 ];
-        %tmp.96 = lgetv %textR.7;
-        symbol [ textR %tmp.96 122 25 30 ];
-        symbol [ Math %tmp.97 122 33 37 ];
-        %tmp.97 = getm $.Toybox.Math;
-        symbol [ sin %tmp.98 122 38 41 ];
-        %tmp.98 = getv function %tmp.97 :sin;
-        %tmp.99 = lgetv %rad.4;
-        symbol [ rad %tmp.99 122 42 45 ];
-        %tmp.100 = invoke %tmp.97 %tmp.98(%tmp.99);
-        %tmp.101 = mul %tmp.96 %tmp.100;
-        %tmp.102 = sub %tmp.95 %tmp.101;
-        lputv %textY.9 %tmp.102;
-        symbol [ textY %textY.9 122 12 17 ];
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 124 8 ]
-        %tmp.103 = lgetv %dc;
-        symbol [ dc %tmp.103 124 8 10 ];
-        symbol [ setColor %tmp.104 124 11 19 ];
-        %tmp.104 = getv function %tmp.103 :setColor;
-        %tmp.105 = lgetv %color.3;
-        symbol [ color %tmp.105 124 20 25 ];
-        symbol [ Graphics %tmp.106 124 27 35 ];
-        %tmp.106 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.107 124 36 53 ];
-        %tmp.107 = getv %tmp.106 :COLOR_TRANSPARENT;
-        invoke %tmp.103 %tmp.104(%tmp.105, %tmp.107);
-[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 125 8 ]
-        %tmp.108 = lgetv %dc;
-        symbol [ dc %tmp.108 125 8 10 ];
-        symbol [ drawText %tmp.109 125 11 19 ];
-        %tmp.109 = getv function %tmp.108 :drawText;
-        %tmp.110 = lgetv %textX.8;
-        symbol [ textX %tmp.110 125 20 25 ];
-        %tmp.111 = lgetv %textY.9;
-        symbol [ textY %tmp.111 125 27 32 ];
-        symbol [ Graphics %tmp.112 125 34 42 ];
-        %tmp.112 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.113 125 43 53 ];
-        %tmp.113 = getv %tmp.112 :FONT_XTINY;
-        %tmp.114 = lgetv %batt.1;
-        symbol [ batt %tmp.114 126 12 16 ];
-        symbol [ toNumber %tmp.115 126 17 25 ];
-        %tmp.115 = getv function %tmp.114 :toNumber;
-        %tmp.116 = invoke %tmp.114 %tmp.115();
-        symbol [ toString %tmp.117 126 28 36 ];
-        %tmp.117 = getv function %tmp.116 :toString;
-        %tmp.118 = invoke %tmp.116 %tmp.117();
-        %tmp.119 = "%";
-        %tmp.120 = add %tmp.118 %tmp.119;
-        symbol [ Graphics %tmp.121 127 12 20 ];
-        %tmp.121 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.122 127 21 40 ];
-        %tmp.122 = getv %tmp.121 :TEXT_JUSTIFY_CENTER;
-        symbol [ Graphics %tmp.123 127 43 51 ];
-        %tmp.123 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_VCENTER %tmp.124 127 52 72 ];
-        %tmp.124 = getv %tmp.123 :TEXT_JUSTIFY_VCENTER;
-        %tmp.125 = bitor %tmp.122 %tmp.124;
-        invoke %tmp.108 %tmp.109(%tmp.110, %tmp.111, %tmp.113, %tmp.120, %tmp.125);
-C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_93_84_128_4_stop:
+        symbol [ batt %batt.1 129 12 16 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 130 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
+        %shown.2 = local;
+        symbol [ shown %shown.2 130 12 17 ];
+        %tmp.5 = lgetv %batt.1;
+        symbol [ batt %tmp.5 130 20 24 ];
+        symbol [ _progress %tmp.7 130 27 36 ];
+        %tmp.7 = getv ? :_progress;
+        %tmp.8 = mul %tmp.5 %tmp.7;
+        lputv %shown.2 %tmp.8;
+        symbol [ shown %shown.2 130 12 17 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 131 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
+        %endAngle.3 = local;
+        symbol [ endAngle %endAngle.3 131 12 20 ];
+        %tmp.9 = 90;
+        %tmp.10 = lgetv %shown.2;
+        symbol [ shown %tmp.10 131 29 34 ];
+        %tmp.11 = 3.6;
+        %tmp.12 = mul %tmp.10 %tmp.11;
+        %tmp.13 = sub %tmp.9 %tmp.12;
+        lputv %endAngle.3 %tmp.13;
+        symbol [ endAngle %endAngle.3 131 12 20 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 132 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
+        %color.4 = local;
+        symbol [ color %color.4 132 12 17 ];
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_begin:
+        %tmp.14 = lgetv %batt.1;
+        symbol [ batt %tmp.14 132 20 24 ];
+        %tmp.15 = 20;
+        %tmp.16 = gt %tmp.14 %tmp.15;
+        bf %tmp.16 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_else_false;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_true:
+        %tmp.17 = 0x00FF88;
+        push %tmp.17;
+        goto @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_end;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_else_false:
+        symbol [ Graphics %tmp.18 132 43 51 ];
+        %tmp.18 = getm $.Toybox.Graphics;
+        symbol [ COLOR_RED %tmp.19 132 52 61 ];
+        %tmp.19 = getv %tmp.18 :COLOR_RED;
+        push %tmp.19;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_end:
+        %tmp.20 = phi [%tmp.16 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_begin] [%tmp.17 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_true] [%tmp.19 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_else_false] [%tmp.20 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_132_20_132_52_end];
+        lputv %color.4 %tmp.20;
+        symbol [ color %color.4 132 12 17 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 134 8 ]
+        %tmp.21 = lgetv %dc;
+        symbol [ dc %tmp.21 134 8 10 ];
+        symbol [ setPenWidth %tmp.22 134 11 22 ];
+        %tmp.22 = getv function %tmp.21 :setPenWidth;
+        %tmp.23 = 8;
+        invoke %tmp.21 %tmp.22(%tmp.23);
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 137 8 ]
+        %tmp.24 = lgetv %dc;
+        symbol [ dc %tmp.24 137 8 10 ];
+        symbol [ setColor %tmp.25 137 11 19 ];
+        %tmp.25 = getv function %tmp.24 :setColor;
+        %tmp.26 = 0x222222;
+        symbol [ Graphics %tmp.27 137 30 38 ];
+        %tmp.27 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.28 137 39 56 ];
+        %tmp.28 = getv %tmp.27 :COLOR_TRANSPARENT;
+        invoke %tmp.24 %tmp.25(%tmp.26, %tmp.28);
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 138 8 ]
+        %tmp.29 = lgetv %dc;
+        symbol [ dc %tmp.29 138 8 10 ];
+        symbol [ drawArc %tmp.30 138 11 18 ];
+        %tmp.30 = getv function %tmp.29 :drawArc;
+        %tmp.31 = lgetv %cx;
+        symbol [ cx %tmp.31 138 19 21 ];
+        %tmp.32 = lgetv %cy;
+        symbol [ cy %tmp.32 138 23 25 ];
+        %tmp.33 = lgetv %r;
+        symbol [ r %tmp.33 138 27 28 ];
+        symbol [ Graphics %tmp.34 138 30 38 ];
+        %tmp.34 = getm $.Toybox.Graphics;
+        symbol [ ARC_CLOCKWISE %tmp.35 138 39 52 ];
+        %tmp.35 = getv %tmp.34 :ARC_CLOCKWISE;
+        %tmp.36 = 90;
+        %tmp.37 = -270;
+        invoke %tmp.29 %tmp.30(%tmp.31, %tmp.32, %tmp.33, %tmp.35, %tmp.36, %tmp.37);
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 141 8 ]
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_141_8_144_8_if_stmt:
+        %tmp.38 = lgetv %shown.2;
+        symbol [ shown %tmp.38 141 12 17 ];
+        %tmp.39 = 0.5;
+        %tmp.40 = gt %tmp.38 %tmp.39;
+        bf %tmp.40 @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_141_8_144_8_if_end;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_141_8_144_8_if_true:
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_141_25_144_8_start:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 142 12 ]
+        %tmp.41 = lgetv %dc;
+        symbol [ dc %tmp.41 142 12 14 ];
+        symbol [ setColor %tmp.42 142 15 23 ];
+        %tmp.42 = getv function %tmp.41 :setColor;
+        %tmp.43 = lgetv %color.4;
+        symbol [ color %tmp.43 142 24 29 ];
+        symbol [ Graphics %tmp.44 142 31 39 ];
+        %tmp.44 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.45 142 40 57 ];
+        %tmp.45 = getv %tmp.44 :COLOR_TRANSPARENT;
+        invoke %tmp.41 %tmp.42(%tmp.43, %tmp.45);
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 143 12 ]
+        %tmp.46 = lgetv %dc;
+        symbol [ dc %tmp.46 143 12 14 ];
+        symbol [ drawArc %tmp.47 143 15 22 ];
+        %tmp.47 = getv function %tmp.46 :drawArc;
+        %tmp.48 = lgetv %cx;
+        symbol [ cx %tmp.48 143 23 25 ];
+        %tmp.49 = lgetv %cy;
+        symbol [ cy %tmp.49 143 27 29 ];
+        %tmp.50 = lgetv %r;
+        symbol [ r %tmp.50 143 31 32 ];
+        symbol [ Graphics %tmp.51 143 34 42 ];
+        %tmp.51 = getm $.Toybox.Graphics;
+        symbol [ ARC_CLOCKWISE %tmp.52 143 43 56 ];
+        %tmp.52 = getv %tmp.51 :ARC_CLOCKWISE;
+        %tmp.53 = 90;
+        %tmp.54 = lgetv %endAngle.3;
+        symbol [ endAngle %tmp.54 143 62 70 ];
+        invoke %tmp.46 %tmp.47(%tmp.48, %tmp.49, %tmp.50, %tmp.52, %tmp.53, %tmp.54);
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_141_25_144_8_stop:
+        goto @C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_141_8_144_8_if_end;
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_141_8_144_8_if_end:
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 147 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
+        %rad.5 = local;
+        symbol [ rad %rad.5 147 12 15 ];
+        %tmp.55 = lgetv %endAngle.3;
+        symbol [ endAngle %tmp.55 147 18 26 ];
+        symbol [ Math %tmp.56 147 29 33 ];
+        %tmp.56 = getm $.Toybox.Math;
+        symbol [ PI %tmp.57 147 34 36 ];
+        %tmp.57 = getv %tmp.56 :PI;
+        %tmp.58 = mul %tmp.55 %tmp.57;
+        %tmp.59 = 180.0;
+        %tmp.60 = div %tmp.58 %tmp.59;
+        lputv %rad.5 %tmp.60;
+        symbol [ rad %rad.5 147 12 15 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 148 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
+        %tipX.6 = local;
+        symbol [ tipX %tipX.6 148 12 16 ];
+        %tmp.61 = lgetv %cx;
+        symbol [ cx %tmp.61 148 19 21 ];
+        %tmp.62 = lgetv %r;
+        symbol [ r %tmp.62 148 24 25 ];
+        symbol [ Math %tmp.63 148 28 32 ];
+        %tmp.63 = getm $.Toybox.Math;
+        symbol [ cos %tmp.64 148 33 36 ];
+        %tmp.64 = getv function %tmp.63 :cos;
+        %tmp.65 = lgetv %rad.5;
+        symbol [ rad %tmp.65 148 37 40 ];
+        %tmp.66 = invoke %tmp.63 %tmp.64(%tmp.65);
+        %tmp.67 = mul %tmp.62 %tmp.66;
+        %tmp.68 = add %tmp.61 %tmp.67;
+        lputv %tipX.6 %tmp.68;
+        symbol [ tipX %tipX.6 148 12 16 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 149 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
+        %tipY.7 = local;
+        symbol [ tipY %tipY.7 149 12 16 ];
+        %tmp.69 = lgetv %cy;
+        symbol [ cy %tmp.69 149 19 21 ];
+        %tmp.70 = lgetv %r;
+        symbol [ r %tmp.70 149 24 25 ];
+        symbol [ Math %tmp.71 149 28 32 ];
+        %tmp.71 = getm $.Toybox.Math;
+        symbol [ sin %tmp.72 149 33 36 ];
+        %tmp.72 = getv function %tmp.71 :sin;
+        %tmp.73 = lgetv %rad.5;
+        symbol [ rad %tmp.73 149 37 40 ];
+        %tmp.74 = invoke %tmp.71 %tmp.72(%tmp.73);
+        %tmp.75 = mul %tmp.70 %tmp.74;
+        %tmp.76 = sub %tmp.69 %tmp.75;
+        lputv %tipY.7 %tmp.76;
+        symbol [ tipY %tipY.7 149 12 16 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 151 8 ]
+        %tmp.77 = lgetv %dc;
+        symbol [ dc %tmp.77 151 8 10 ];
+        symbol [ setColor %tmp.78 151 11 19 ];
+        %tmp.78 = getv function %tmp.77 :setColor;
+        symbol [ Graphics %tmp.79 151 20 28 ];
+        %tmp.79 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.80 151 29 40 ];
+        %tmp.80 = getv %tmp.79 :COLOR_WHITE;
+        symbol [ Graphics %tmp.81 151 42 50 ];
+        %tmp.81 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.82 151 51 68 ];
+        %tmp.82 = getv %tmp.81 :COLOR_TRANSPARENT;
+        invoke %tmp.77 %tmp.78(%tmp.80, %tmp.82);
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 152 8 ]
+        %tmp.83 = lgetv %dc;
+        symbol [ dc %tmp.83 152 8 10 ];
+        symbol [ fillCircle %tmp.84 152 11 21 ];
+        %tmp.84 = getv function %tmp.83 :fillCircle;
+        %tmp.85 = lgetv %tipX.6;
+        symbol [ tipX %tmp.85 152 22 26 ];
+        %tmp.86 = lgetv %tipY.7;
+        symbol [ tipY %tmp.86 152 28 32 ];
+        %tmp.87 = 5;
+        invoke %tmp.83 %tmp.84(%tmp.85, %tmp.86, %tmp.87);
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 155 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
+        %textR.8 = local;
+        symbol [ textR %textR.8 155 12 17 ];
+        %tmp.88 = lgetv %r;
+        symbol [ r %tmp.88 155 20 21 ];
+        %tmp.89 = 26;
+        %tmp.90 = sub %tmp.88 %tmp.89;
+        lputv %textR.8 %tmp.90;
+        symbol [ textR %textR.8 155 12 17 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 156 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
+        %textX.9 = local;
+        symbol [ textX %textX.9 156 12 17 ];
+        %tmp.91 = lgetv %cx;
+        symbol [ cx %tmp.91 156 20 22 ];
+        %tmp.92 = lgetv %textR.8;
+        symbol [ textR %tmp.92 156 25 30 ];
+        symbol [ Math %tmp.93 156 33 37 ];
+        %tmp.93 = getm $.Toybox.Math;
+        symbol [ cos %tmp.94 156 38 41 ];
+        %tmp.94 = getv function %tmp.93 :cos;
+        %tmp.95 = lgetv %rad.5;
+        symbol [ rad %tmp.95 156 42 45 ];
+        %tmp.96 = invoke %tmp.93 %tmp.94(%tmp.95);
+        %tmp.97 = mul %tmp.92 %tmp.96;
+        %tmp.98 = add %tmp.91 %tmp.97;
+        lputv %textX.9 %tmp.98;
+        symbol [ textX %textX.9 156 12 17 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 157 8 ]
+        [ "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_start" "C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop" ]
+        %textY.10 = local;
+        symbol [ textY %textY.10 157 12 17 ];
+        %tmp.99 = lgetv %cy;
+        symbol [ cy %tmp.99 157 20 22 ];
+        %tmp.100 = lgetv %textR.8;
+        symbol [ textR %tmp.100 157 25 30 ];
+        symbol [ Math %tmp.101 157 33 37 ];
+        %tmp.101 = getm $.Toybox.Math;
+        symbol [ sin %tmp.102 157 38 41 ];
+        %tmp.102 = getv function %tmp.101 :sin;
+        %tmp.103 = lgetv %rad.5;
+        symbol [ rad %tmp.103 157 42 45 ];
+        %tmp.104 = invoke %tmp.101 %tmp.102(%tmp.103);
+        %tmp.105 = mul %tmp.100 %tmp.104;
+        %tmp.106 = sub %tmp.99 %tmp.105;
+        lputv %textY.10 %tmp.106;
+        symbol [ textY %textY.10 157 12 17 ];
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 159 8 ]
+        %tmp.107 = lgetv %dc;
+        symbol [ dc %tmp.107 159 8 10 ];
+        symbol [ setColor %tmp.108 159 11 19 ];
+        %tmp.108 = getv function %tmp.107 :setColor;
+        %tmp.109 = lgetv %color.4;
+        symbol [ color %tmp.109 159 20 25 ];
+        symbol [ Graphics %tmp.110 159 27 35 ];
+        %tmp.110 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.111 159 36 53 ];
+        %tmp.111 = getv %tmp.110 :COLOR_TRANSPARENT;
+        invoke %tmp.107 %tmp.108(%tmp.109, %tmp.111);
+[ "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc" 160 8 ]
+        %tmp.112 = lgetv %dc;
+        symbol [ dc %tmp.112 160 8 10 ];
+        symbol [ drawText %tmp.113 160 11 19 ];
+        %tmp.113 = getv function %tmp.112 :drawText;
+        %tmp.114 = lgetv %textX.9;
+        symbol [ textX %tmp.114 160 20 25 ];
+        %tmp.115 = lgetv %textY.10;
+        symbol [ textY %tmp.115 160 27 32 ];
+        symbol [ Graphics %tmp.116 160 34 42 ];
+        %tmp.116 = getm $.Toybox.Graphics;
+        symbol [ FONT_XTINY %tmp.117 160 43 53 ];
+        %tmp.117 = getv %tmp.116 :FONT_XTINY;
+        %tmp.118 = lgetv %shown.2;
+        symbol [ shown %tmp.118 161 12 17 ];
+        symbol [ toNumber %tmp.119 161 18 26 ];
+        %tmp.119 = getv function %tmp.118 :toNumber;
+        %tmp.120 = invoke %tmp.118 %tmp.119();
+        symbol [ toString %tmp.121 161 29 37 ];
+        %tmp.121 = getv function %tmp.120 :toString;
+        %tmp.122 = invoke %tmp.120 %tmp.121();
+        %tmp.123 = "%";
+        %tmp.124 = add %tmp.122 %tmp.123;
+        symbol [ Graphics %tmp.125 162 12 20 ];
+        %tmp.125 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.126 162 21 40 ];
+        %tmp.126 = getv %tmp.125 :TEXT_JUSTIFY_CENTER;
+        symbol [ Graphics %tmp.127 162 43 51 ];
+        %tmp.127 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_VCENTER %tmp.128 162 52 72 ];
+        %tmp.128 = getv %tmp.127 :TEXT_JUSTIFY_VCENTER;
+        %tmp.129 = bitor %tmp.126 %tmp.128;
+        invoke %tmp.112 %tmp.113(%tmp.114, %tmp.115, %tmp.117, %tmp.124, %tmp.129);
+C__Users_DELL_Desktop_Garmin_projects_myWatchface_source_myWatchfaceView_mc_128_84_163_4_stop:
     }
 }
 [ @file = "C:\Users\DELL\Desktop\Garmin_projects\myWatchface\source\myWatchfaceView.mc"; @line = 1; ]

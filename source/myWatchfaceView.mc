@@ -5,8 +5,13 @@ import Toybox.Lang;
 import Toybox.Time.Gregorian;
 import Toybox.Math;
 import Toybox.Time;
+import Toybox.Timer;
 
 class myWatchfaceView extends WatchUi.WatchFace {
+    private var _progress as Float = 1.0;
+    private var _timer as Timer.Timer or Null = null;
+    private var _startMs as Number = 0;
+    private var _animMs as Number = 800;   // ระยะเวลาแอนิเมชัน (มิลลิวินาที)
 
     function initialize() {
         WatchFace.initialize();
@@ -46,14 +51,44 @@ class myWatchfaceView extends WatchUi.WatchFace {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() as Void {
+        stopAnim();
     }
 
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() as Void {
+        startAnim();
     }
 
     // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() as Void {
+        stopAnim();
+        _progress = 1.0;           // โหมดประหยัดพลังงานแสดงค่าเต็มทันที
+        WatchUi.requestUpdate();
+    }
+
+    function startAnim() as Void {
+        stopAnim();
+        _progress = 0.0;
+        _startMs = System.getTimer();
+        _timer = new Timer.Timer();
+        _timer.start(method(:onTick), 40, true);   // ประมาณ 25 เฟรมต่อวินาที
+    }
+
+    function stopAnim() as Void {
+        if (_timer != null) {
+            _timer.stop();
+            _timer = null;
+        }
+    }
+
+    function onTick() as Void {
+        var t = (System.getTimer() - _startMs).toFloat() / _animMs;
+        if (t >= 1.0) {
+            t = 1.0;
+            stopAnim();
+        }
+        _progress = 1.0 - Math.pow(1.0 - t, 3);    // ease-out เริ่มเร็วแล้วค่อยๆ ช้าลง
+        WatchUi.requestUpdate();
     }
 
     // เวลา
@@ -86,13 +121,14 @@ class myWatchfaceView extends WatchUi.WatchFace {
         ]);
 
         dc.setColor(0x898989, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy + (h * 0.2), Graphics.FONT_XTINY, dateStr,
+        dc.drawText(cx, cy + (h * 0.15), Graphics.FONT_XTINY, dateStr,
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
     function drawBattery(dc as Dc, cx as Number, cy as Number, r as Number) as Void {
-        var batt = System.getSystemStats().battery; // 0-100
-        var endAngle = 90 - (batt * 3.6);
+        var batt = System.getSystemStats().battery;   // ค่าจริง 0-100
+        var shown = batt * _progress;                 // ค่าที่กำลังแสดงตามแอนิเมชัน
+        var endAngle = 90 - (shown * 3.6);
         var color = batt > 20 ? 0x00FF88 : Graphics.COLOR_RED;
 
         dc.setPenWidth(8);
@@ -102,28 +138,27 @@ class myWatchfaceView extends WatchUi.WatchFace {
         dc.drawArc(cx, cy, r, Graphics.ARC_CLOCKWISE, 90, -270);
 
         // ระดับแบตเตอรี่
-        if (batt > 0) {
+        if (shown > 0.5) {
             dc.setColor(color, Graphics.COLOR_TRANSPARENT);
             dc.drawArc(cx, cy, r, Graphics.ARC_CLOCKWISE, 90, endAngle);
         }
 
-        // ตำแหน่งปลายวงโค้ง
+        // ปลายวงโค้ง
         var rad = endAngle * Math.PI / 180.0;
         var tipX = cx + r * Math.cos(rad);
         var tipY = cy - r * Math.sin(rad);
 
-        // จุดวงกลมที่ปลาย
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.fillCircle(tipX, tipY, 5);
 
-        // ข้อความ % วางถอยเข้าด้านในตามแนวมุมเดียวกัน
+        // ข้อความ % วิ่งตามปลายวงโค้ง ตัวเลขนับขึ้นไปด้วย
         var textR = r - 26;
         var textX = cx + textR * Math.cos(rad);
         var textY = cy - textR * Math.sin(rad);
 
         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
         dc.drawText(textX, textY, Graphics.FONT_XTINY,
-            batt.toNumber().toString() + "%",
+            shown.toNumber().toString() + "%",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 }
