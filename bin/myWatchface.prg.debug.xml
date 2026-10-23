@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+    <manifest filename="C:\Users\DELL\Desktop\myWatchface\manifest.xml"/>
+    <pcToLineNum>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceApp.mc" id="1" lineNum="26" parent="globals" pc="268435460" symbol="getApp"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceApp.mc" id="1" lineNum="27" parent="globals" pc="268435470" symbol="getApp"/>
+        <entry filename="c:\\Users\\DELL\\Desktop\\myWatchface\\bin\\gen\\006-B4432-00\\source\\Rez.mcgen" id="2" lineNum="7" parent="globals/Rez" pc="268435481" symbol="&lt;init&gt;"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="3" lineNum="9" parent="globals/myWatchfaceView" pc="268435501" symbol="&lt;init&gt;"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceApp.mc" id="4" lineNum="5" parent="globals/myWatchfaceApp" pc="268435513" symbol="&lt;init&gt;"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="7" lineNum="16" parent="globals/myWatchfaceView" pc="268435525" symbol="onLayout"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="7" lineNum="17" parent="globals/myWatchfaceView" pc="268435527" symbol="onLayout"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="9" lineNum="60" parent="globals/myWatchfaceView" pc="268435561" symbol="drawTime"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="9" lineNum="61" parent="globals/myWatchfaceView" pc="268435564" symbol="drawTime"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="9" lineNum="62" parent="globals/myWatchfaceView" pc="268435576" symbol="drawTime"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="9" lineNum="68" parent="globals/myWatchfaceView" pc="268435643" symbol="drawTime"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="9" lineNum="69" parent="globals/myWatchfaceView" pc="268435660" symbol="drawTime"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="93" parent="globals/myWatchfaceView" pc="268435681" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="94" parent="globals/myWatchfaceView" pc="268435684" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="95" parent="globals/myWatchfaceView" pc="268435701" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="96" parent="globals/myWatchfaceView" pc="268435714" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="98" parent="globals/myWatchfaceView" pc="268435736" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="101" parent="globals/myWatchfaceView" pc="268435748" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="102" parent="globals/myWatchfaceView" pc="268435764" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="105" parent="globals/myWatchfaceView" pc="268435787" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="106" parent="globals/myWatchfaceView" pc="268435794" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="107" parent="globals/myWatchfaceView" pc="268435808" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="111" parent="globals/myWatchfaceView" pc="268435833" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="112" parent="globals/myWatchfaceView" pc="268435849" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="113" parent="globals/myWatchfaceView" pc="268435871" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="116" parent="globals/myWatchfaceView" pc="268435893" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="117" parent="globals/myWatchfaceView" pc="268435910" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="120" parent="globals/myWatchfaceView" pc="268435926" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="121" parent="globals/myWatchfaceView" pc="268435933" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="122" parent="globals/myWatchfaceView" pc="268435955" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="124" parent="globals/myWatchfaceView" pc="268435977" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="10" lineNum="125" parent="globals/myWatchfaceView" pc="268435991" symbol="drawBattery"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="11" lineNum="11" parent="globals/myWatchfaceView" pc="268436028" symbol="initialize"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="11" lineNum="12" parent="globals/myWatchfaceView" pc="268436030" symbol="initialize"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="27" parent="globals/myWatchfaceView" pc="268436043" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="29" parent="globals/myWatchfaceView" pc="268436046" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="30" parent="globals/myWatchfaceView" pc="268436055" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="31" parent="globals/myWatchfaceView" pc="268436064" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="32" parent="globals/myWatchfaceView" pc="268436071" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="35" parent="globals/myWatchfaceView" pc="268436078" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="36" parent="globals/myWatchfaceView" pc="268436090" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="38" parent="globals/myWatchfaceView" pc="268436098" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="40" parent="globals/myWatchfaceView" pc="268436109" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="41" parent="globals/myWatchfaceView" pc="268436132" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="13" lineNum="42" parent="globals/myWatchfaceView" pc="268436147" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="14" lineNum="74" parent="globals/myWatchfaceView" pc="268436165" symbol="drawDate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="14" lineNum="75" parent="globals/myWatchfaceView" pc="268436168" symbol="drawDate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="14" lineNum="77" parent="globals/myWatchfaceView" pc="268436193" symbol="drawDate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="14" lineNum="79" parent="globals/myWatchfaceView" pc="268436200" symbol="drawDate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="14" lineNum="82" parent="globals/myWatchfaceView" pc="268436207" symbol="drawDate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="14" lineNum="88" parent="globals/myWatchfaceView" pc="268436269" symbol="drawDate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceView.mc" id="14" lineNum="89" parent="globals/myWatchfaceView" pc="268436286" symbol="drawDate"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceApp.mc" id="15" lineNum="12" parent="globals/myWatchfaceApp" pc="268436315" symbol="onStart"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceApp.mc" id="16" lineNum="20" parent="globals/myWatchfaceApp" pc="268436318" symbol="getInitialView"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceApp.mc" id="16" lineNum="21" parent="globals/myWatchfaceApp" pc="268436320" symbol="getInitialView"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceApp.mc" id="17" lineNum="7" parent="globals/myWatchfaceApp" pc="268436346" symbol="initialize"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceApp.mc" id="17" lineNum="8" parent="globals/myWatchfaceApp" pc="268436348" symbol="initialize"/>
+        <entry filename="C:\\Users\\DELL\\Desktop\\myWatchface\\source\\myWatchfaceApp.mc" id="18" lineNum="16" parent="globals/myWatchfaceApp" pc="268436361" symbol="onStop"/>
+        <entry filename="c:\\Users\\DELL\\Desktop\\myWatchface\\bin\\gen\\006-B4432-00\\source\\Rez.mcgen" id="19" lineNum="13" parent="globals/Rez/Layouts" pc="268436364" symbol="WatchFace"/>
+        <entry filename="c:\\Users\\DELL\\Desktop\\myWatchface\\bin\\gen\\006-B4432-00\\source\\Rez.mcgen" id="19" lineNum="14" parent="globals/Rez/Layouts" pc="268436375" symbol="WatchFace"/>
+        <entry filename="c:\\Users\\DELL\\Desktop\\myWatchface\\bin\\gen\\006-B4432-00\\source\\Rez.mcgen" id="19" lineNum="16" parent="globals/Rez/Layouts" pc="268436491" symbol="WatchFace"/>
+    </pcToLineNum>
+    <symbolTable>
+        <entry id="8388639" module="true" symbol="Graphics"/>
+        <entry id="7" object="true" symbol="myWatchfaceView"/>
+        <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
+        <entry id="10" method="true" symbol="drawDate"/>
+        <entry id="6" object="true" symbol="myWatchfaceApp"/>
+        <entry id="8388924" module="true" symbol="Gregorian"/>
+        <entry field="true" id="8388611" module="true" symbol="Toybox"/>
+        <entry id="11" method="true" symbol="drawTime"/>
+        <entry field="true" id="13" symbol="AppName"/>
+        <entry id="5" module="true" symbol="globals/Rez/Strings"/>
+        <entry id="8388648" module="true" symbol="WatchUi"/>
+        <entry id="2" module="true" symbol="globals/Rez"/>
+        <entry id="8389124" method="true" symbol="onUpdate"/>
+        <entry id="8389375" method="true" object="true" symbol="WatchFace"/>
+        <entry field="true" id="8389065" symbol="locY"/>
+        <entry field="true" id="8389064" symbol="locX"/>
+        <entry id="8388771" module="true" object="true" symbol="Drawables"/>
+        <entry id="8389348" symbol="font"/>
+        <entry id="8389275" method="true" symbol="getApp"/>
+        <entry id="4" module="true" symbol="globals/Rez/Layouts"/>
+        <entry id="9" method="true" symbol="drawBattery"/>
+        <entry id="8389122" method="true" symbol="onLayout"/>
+        <entry id="8389376" method="true" symbol="onEnterSleep"/>
+        <entry field="true" id="8389063" symbol="identifier"/>
+        <entry id="8389349" symbol="justification"/>
+        <entry id="3" module="true" symbol="globals/Rez/Drawables"/>
+        <entry id="8389377" method="true" symbol="onExitSleep"/>
+        <entry id="8388644" module="true" symbol="System"/>
+        <entry id="8388645" module="true" symbol="Time"/>
+        <entry id="8388769" module="true" object="true" symbol="Rez"/>
+        <entry id="8388640" module="true" symbol="Lang"/>
+        <entry field="true" id="12" symbol="LauncherIcon"/>
+        <entry id="8388610" symbol="statics"/>
+        <entry id="8389123" method="true" symbol="onShow"/>
+        <entry id="8389350" module="true" symbol="globals"/>
+        <entry id="8388770" module="true" object="true" symbol="Strings"/>
+        <entry id="8388702" method="true" symbol="initialize"/>
+        <entry id="8389279" method="true" symbol="onStart"/>
+        <entry id="8388641" module="true" symbol="Math"/>
+        <entry id="8389280" method="true" symbol="getInitialView"/>
+        <entry id="8389281" method="true" symbol="onStop"/>
+        <entry field="true" id="8389347" symbol="color"/>
+        <entry id="8" module="true" symbol="Layouts"/>
+        <entry id="8389125" method="true" symbol="onHide"/>
+        <entry id="8388635" module="true" symbol="Application"/>
+    </symbolTable>
+    <localVars>
+        <entry arg="true" endPc="268435560" name="dc" stackId="1" startPc="268435525"/>
+        <entry arg="true" endPc="268435680" name="dc" stackId="1" startPc="268435561"/>
+        <entry arg="true" endPc="268435680" name="cx" stackId="2" startPc="268435561"/>
+        <entry arg="true" endPc="268435680" name="cy" stackId="3" startPc="268435561"/>
+        <entry endPc="268435679" name="clock" stackId="4" startPc="268435564"/>
+        <entry endPc="268435679" name="timeStr" stackId="5" startPc="268435564"/>
+        <entry arg="true" endPc="268436027" name="dc" stackId="1" startPc="268435681"/>
+        <entry arg="true" endPc="268436027" name="cx" stackId="2" startPc="268435681"/>
+        <entry arg="true" endPc="268436027" name="cy" stackId="3" startPc="268435681"/>
+        <entry arg="true" endPc="268436027" name="r" stackId="4" startPc="268435681"/>
+        <entry endPc="268436026" name="batt" stackId="5" startPc="268435684"/>
+        <entry endPc="268436026" name="endAngle" stackId="6" startPc="268435684"/>
+        <entry endPc="268436026" name="color" stackId="7" startPc="268435684"/>
+        <entry endPc="268436026" name="rad" stackId="8" startPc="268435684"/>
+        <entry endPc="268436026" name="tipX" stackId="9" startPc="268435684"/>
+        <entry endPc="268436026" name="tipY" stackId="10" startPc="268435684"/>
+        <entry endPc="268436026" name="textR" stackId="11" startPc="268435684"/>
+        <entry endPc="268436026" name="textX" stackId="12" startPc="268435684"/>
+        <entry endPc="268436026" name="textY" stackId="13" startPc="268435684"/>
+        <entry arg="true" endPc="268436164" name="dc" stackId="1" startPc="268436043"/>
+        <entry endPc="268436163" name="w" stackId="2" startPc="268436046"/>
+        <entry endPc="268436163" name="h" stackId="3" startPc="268436046"/>
+        <entry endPc="268436163" name="cx" stackId="4" startPc="268436046"/>
+        <entry endPc="268436163" name="cy" stackId="5" startPc="268436046"/>
+        <entry arg="true" endPc="268436314" name="dc" stackId="1" startPc="268436165"/>
+        <entry arg="true" endPc="268436314" name="cx" stackId="2" startPc="268436165"/>
+        <entry arg="true" endPc="268436314" name="cy" stackId="3" startPc="268436165"/>
+        <entry arg="true" endPc="268436314" name="h" stackId="4" startPc="268436165"/>
+        <entry endPc="268436313" name="now" stackId="5" startPc="268436168"/>
+        <entry endPc="268436313" name="days" stackId="6" startPc="268436168"/>
+        <entry endPc="268436313" name="months" stackId="7" startPc="268436168"/>
+        <entry endPc="268436313" name="dateStr" stackId="8" startPc="268436168"/>
+        <entry arg="true" endPc="268436500" name="dc" stackId="1" startPc="268436364"/>
+        <entry endPc="268436500" name="rez_cmp_local_text_TimeLabel" stackId="2" startPc="268436375"/>
+    </localVars>
+    <deviceInfo deviceVersion="3d0fb192a2cf01699aefd0f384af3f527e5885bd" partNumber="006-B4432-00"/>
+    <annotations>
+        <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="LauncherIcon"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
+    </annotations>
+    <dataEntryOffsetMappings>
+        <dataEntry label="globals" offset="58" parentId="" symbolId="globals" type="module"/>
+        <dataEntry label="globals/Rez" offset="125" parentId="globals" symbolId="Rez" type="module"/>
+        <dataEntry label="globals/myWatchfaceView" offset="178" parentId="globals" symbolId="myWatchfaceView" type="class"/>
+        <dataEntry label="globals/myWatchfaceApp" offset="303" parentId="globals" symbolId="myWatchfaceApp" type="class"/>
+        <dataEntry label="globals/Rez/Drawables" offset="374" parentId="Rez" symbolId="Drawables" type="module"/>
+        <dataEntry label="globals/Rez/Layouts" offset="409" parentId="Rez" symbolId="Layouts" type="module"/>
+        <dataEntry label="globals/Rez/Strings" offset="444" parentId="Rez" symbolId="Strings" type="module"/>
+    </dataEntryOffsetMappings>
+    <functions>
+        <functionEntry accessMode="public" endPc="268435480" name="getApp" startPc="268435460">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435500" name="&lt;init&gt;" parent="Rez" startPc="268435481">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435512" name="&lt;init&gt;" parent="myWatchfaceView" startPc="268435501">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435524" name="&lt;init&gt;" parent="myWatchfaceApp" startPc="268435513">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="&lt;init&gt;" parent="Drawables">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="&lt;init&gt;" parent="Layouts">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="&lt;init&gt;" parent="Strings">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onExitSleep" parent="myWatchfaceView">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onShow" parent="myWatchfaceView">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435560" name="onLayout" parent="myWatchfaceView" startPc="268435525">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onEnterSleep" parent="myWatchfaceView">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435680" name="drawTime" parent="myWatchfaceView" startPc="268435561">
+            <param id="dc"/>
+            <param id="cx"/>
+            <param id="cy"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436027" name="drawBattery" parent="myWatchfaceView" startPc="268435681">
+            <param id="dc"/>
+            <param id="cx"/>
+            <param id="cy"/>
+            <param id="r"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436042" name="initialize" parent="myWatchfaceView" startPc="268436028">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onHide" parent="myWatchfaceView">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436164" name="onUpdate" parent="myWatchfaceView" startPc="268436043">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436314" name="drawDate" parent="myWatchfaceView" startPc="268436165">
+            <param id="dc"/>
+            <param id="cx"/>
+            <param id="cy"/>
+            <param id="h"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436317" name="onStart" parent="myWatchfaceApp" startPc="268436315">
+            <param id="state"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436345" name="getInitialView" parent="myWatchfaceApp" startPc="268436318">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436360" name="initialize" parent="myWatchfaceApp" startPc="268436346">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436363" name="onStop" parent="myWatchfaceApp" startPc="268436361">
+            <param id="state"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436500" name="WatchFace" parent="Layouts" startPc="268436364">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+    </functions>
+</debugInfo>
