@@ -9,6 +9,7 @@ import Toybox.Timer;
 import Toybox.Activity;
 import Toybox.ActivityMonitor;
 import Toybox.SensorHistory;
+import Toybox.Complications;
 
 class myWatchfaceView extends WatchUi.WatchFace {
     private var _progress as Float = 1.0;
@@ -23,10 +24,22 @@ class myWatchfaceView extends WatchUi.WatchFace {
     private var _iconBody as BitmapResource or Null = null;
     private var _iconHeart as BitmapResource or Null = null;
 
-    private const ARC_GAP = 4;   // ช่องว่างปลายครึ่งวงกลมด้านบน/ล่าง (องศา)
+    // ค่า Stress / Body Battery ที่เก็บไว้ (อัปเดตจาก Complications หรือ SensorHistory)
+    private var _stress as Number or Null = null;
+    private var _bodyBatt as Number or Null = null;
+    private var _lastWellnessMs as Number = -10000;
+    private var _useComplications as Boolean = false;
+
+    private const ARC_GAP = 5;    // ช่องว่างปลายครึ่งวงกลมด้านบน/ล่าง (องศา)
+    private const ARC_W = 10;     // ความหนา arc
+
+    // สีไล่ระดับ (ต่ำ -> สูง) แก้ได้ตามชอบ
+    private var _stressStops as Array<Number> = [0xFF9500, 0xFF2D2D];   // ส้ม -> แดง
+    private var _bodyStops as Array<Number> = [0x00C8FF, 0x0033FF];     // ฟ้า -> น้ำเงิน
 
     function initialize() {
         WatchFace.initialize();
+        setupComplications();
     }
 
     function onLayout(dc as Dc) as Void {
@@ -49,19 +62,20 @@ class myWatchfaceView extends WatchUi.WatchFace {
         dc.clear();
         dc.setAntiAlias(true);
 
-        var r = (w / 2) - 8;
+        var r = (w / 2) - (ARC_W / 2) - 4;
 
-        var stress = getStress();
-        var bodyBatt = getBodyBattery();
+        refreshWellness(false);
+        var stress = _stress;
+        var bodyBatt = _bodyBatt;
 
-        // Arc: Stress (ซ้าย) / Body Battery (ขวา)
-        drawSideArc(dc, cx, cy, r, stress, true, 0xFF9900);
-        drawSideArc(dc, cx, cy, r, bodyBatt, false, 0x00AAFF);
+        // Arc ไล่สี: Stress (ซ้าย) / Body Battery (ขวา)
+        drawSideArc(dc, cx, cy, r, stress, true, _stressStops);
+        drawSideArc(dc, cx, cy, r, bodyBatt, false, _bodyStops);
 
-        // ตัวเลข + ไอคอน อยู่ข้างๆ arc (ตำแหน่งคงที่)
-        var infoOffset = 32;
-        drawSideInfo(dc, cx - r + infoOffset, cy, stress, 0xFF9900, _iconStress);
-        drawSideInfo(dc, cx + r - infoOffset, cy, bodyBatt, 0x00AAFF, _iconBody);
+        // ตัวเลข + ไอคอน อยู่ข้างๆ arc
+        var infoOffset = (ARC_W / 2) + 30;
+        drawSideInfo(dc, cx - r + infoOffset, cy, stress, _stressStops, _iconStress);
+        drawSideInfo(dc, cx + r - infoOffset, cy, bodyBatt, _bodyStops, _iconBody);
 
         drawBatteryTop(dc, cx, h);
         drawTime(dc, cx, cy);
@@ -76,6 +90,7 @@ class myWatchfaceView extends WatchUi.WatchFace {
     }
 
     function onExitSleep() as Void {
+        refreshWellness(true);   // ยกข้อมือแล้วอ่านค่าใหม่ทันที
         startAnim();
     }
 
@@ -110,6 +125,112 @@ class myWatchfaceView extends WatchUi.WatchFace {
         WatchUi.requestUpdate();
     }
 
+    // ---------------- Stress / Body Battery แบบ real time ----------------
+    function setupComplications() as Void {
+        if (Toybox has :Complications) {
+            try {
+                Complications.registerComplicationChangeCallback(self.method(:onComplicationChanged));
+                Complications.subscribeToUpdates(new Complications.Id(Complications.COMPLICATION_TYPE_STRESS));
+                Complications.subscribeToUpdates(new Complications.Id(Complications.COMPLICATION_TYPE_BODY_BATTERY));
+                _useComplications = true;
+            } catch (ex) {
+                _useComplications = false;
+            }
+        }
+    }
+
+    // นาฬิกาเรียกเมื่อค่า complication เปลี่ยน
+    function onComplicationChanged(id as Complications.Id) as Void {
+        refreshWellness(true);
+        WatchUi.requestUpdate();
+    }
+
+    function refreshWellness(force as Boolean) as Void {
+        var now = System.getTimer();
+        if (!force && (now - _lastWellnessMs) < 5000) {
+            return;
+        }
+        _lastWellnessMs = now;
+
+        var s = null;
+        var b = null;
+
+        if (_useComplications) {
+            s = readComplication(Complications.COMPLICATION_TYPE_STRESS);
+            b = readComplication(Complications.COMPLICATION_TYPE_BODY_BATTERY);
+        }
+        if (s == null) { s = getStressFromHistory(); }
+        if (b == null) { b = getBodyBatteryFromHistory(); }
+
+        _stress = s;
+        _bodyBatt = b;
+    }
+
+    function readComplication(type as Complications.Type) as Number or Null {
+        try {
+            var c = Complications.getComplication(new Complications.Id(type));
+            if (c != null) {
+                var v = c.value;
+                if (v instanceof Number) {
+                    return v;
+                } else if (v instanceof Float) {
+                    return v.toNumber();
+                }
+            }
+        } catch (ex) {
+        }
+        return null;
+    }
+
+    // fallback: อ่านจากประวัติเซนเซอร์
+    function getStressFromHistory() as Number or Null {
+        if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) {
+            var it = SensorHistory.getStressHistory({:period => 1,
+                :order => SensorHistory.ORDER_NEWEST_FIRST});
+            var s = (it != null) ? it.next() : null;
+            if (s != null && s.data != null) {
+                return s.data.toNumber();
+            }
+        }
+        return null;
+    }
+
+    function getBodyBatteryFromHistory() as Number or Null {
+        if ((Toybox has :SensorHistory) && (SensorHistory has :getBodyBatteryHistory)) {
+            var it = SensorHistory.getBodyBatteryHistory({:period => 1,
+                :order => SensorHistory.ORDER_NEWEST_FIRST});
+            var s = (it != null) ? it.next() : null;
+            if (s != null && s.data != null) {
+                return s.data.toNumber();
+            }
+        }
+        return null;
+    }
+
+    // ---------------- สีไล่ระดับ ----------------
+    function lerpColor(c1 as Number, c2 as Number, t as Float) as Number {
+        var r1 = (c1 >> 16) & 0xFF;
+        var g1 = (c1 >> 8) & 0xFF;
+        var b1 = c1 & 0xFF;
+        var r2 = (c2 >> 16) & 0xFF;
+        var g2 = (c2 >> 8) & 0xFF;
+        var b2 = c2 & 0xFF;
+        var r = (r1 + (r2 - r1) * t).toNumber();
+        var g = (g1 + (g2 - g1) * t).toNumber();
+        var b = (b1 + (b2 - b1) * t).toNumber();
+        return (r << 16) | (g << 8) | b;
+    }
+
+    // p = 0.0 - 1.0 ตำแหน่งบนสเกล
+    function gradientColor(stops as Array<Number>, p as Float) as Number {
+        if (p <= 0.0) { return stops[0]; }
+        if (p >= 1.0) { return stops[stops.size() - 1]; }
+        var n = stops.size() - 1;
+        var pos = p * n;
+        var i = pos.toNumber();
+        return lerpColor(stops[i], stops[i + 1], pos - i);
+    }
+
     // ---------------- helper วาด bitmap ตรงกึ่งกลาง ----------------
     function drawIcon(dc as Dc, bmp as BitmapResource or Null, x as Number, y as Number) as Void {
         if (bmp == null) { return; }
@@ -136,8 +257,7 @@ class myWatchfaceView extends WatchUi.WatchFace {
             return;
         }
 
-        // ตำแหน่งแนวตั้ง = กึ่งกลางระหว่างขอบล่างกราฟ HR กับขอบบนตัวเลขเวลา
-        var graphBottom = cy - (h * 0.13);
+        var graphBottom = cy - (h * 0.12);
         var timeTop = cy - dc.getFontHeight(Graphics.FONT_NUMBER_MEDIUM) / 2;
         var ny = ((graphBottom + timeTop) / 2).toNumber();
 
@@ -151,14 +271,12 @@ class myWatchfaceView extends WatchUi.WatchFace {
         var ex = (cx - total / 2).toNumber();
         var ey = ny - eh / 2;
 
-        // ซองจดหมาย
         dc.setPenWidth(2);
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawRectangle(ex, ey, ew, eh);
         dc.drawLine(ex, ey, ex + ew / 2, ey + eh / 2 + 1);
         dc.drawLine(ex + ew, ey, ex + ew / 2, ey + eh / 2 + 1);
 
-        // จำนวนข้อความ
         dc.drawText(ex + ew + gap, ny, Graphics.FONT_XTINY, txt,
             Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
     }
@@ -205,7 +323,7 @@ class myWatchfaceView extends WatchUi.WatchFace {
 
         var valY = (cy + h * 0.255).toNumber();
         var lblY = valY + dc.getFontHeight(Graphics.FONT_XTINY) - 4;
-        var dx = (w * 0.25).toNumber();
+        var dx = (w * 0.2).toNumber();
 
         drawStatItem(dc, cx - dx, valY, lblY, stepsTxt, "steps");
         drawStatItem(dc, cx,      valY, lblY, calTxt,   "kcal");
@@ -252,18 +370,22 @@ class myWatchfaceView extends WatchUi.WatchFace {
             Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
-    // ---------------- Arc ครึ่งวงกลม ซ้าย/ขวา ----------------
+    // ---------------- Arc ครึ่งวงกลม ไล่สี ----------------
+        // ---------------- Arc ครึ่งวงกลม ไล่สี ----------------
     function drawSideArc(dc as Dc, cx as Number, cy as Number, r as Number,
-                         value as Number or Null, isLeft as Boolean, color as Number) as Void {
+                         value as Number or Null, isLeft as Boolean,
+                         stops as Array<Number>) as Void {
         var pct = (value == null) ? 0.0 : value.toFloat();
         if (pct > 100) { pct = 100.0; }
         if (pct < 0) { pct = 0.0; }
         pct = pct * _progress;
 
-        var sweep = (180 - 2 * ARC_GAP) * pct / 100.0;
+        var total = 180 - 2 * ARC_GAP;                    // องศาทั้งหมดของ arc (จำนวนเต็ม)
+        var sweep = (total * pct / 100.0).toNumber();     // องศาที่เติม (จำนวนเต็ม)
 
-        dc.setPenWidth(8);
+        dc.setPenWidth(ARC_W);
 
+        // ราง
         dc.setColor(0x222222, Graphics.COLOR_TRANSPARENT);
         if (isLeft) {
             dc.drawArc(cx, cy, r, Graphics.ARC_COUNTER_CLOCKWISE, 90 + ARC_GAP, 270 - ARC_GAP);
@@ -271,69 +393,63 @@ class myWatchfaceView extends WatchUi.WatchFace {
             dc.drawArc(cx, cy, r, Graphics.ARC_CLOCKWISE, 90 - ARC_GAP, -90 + ARC_GAP);
         }
 
+        // ค่า: วาดเป็นชิ้นเล็กๆ ทีละ 4 องศา แต่ละชิ้นมีสีตามตำแหน่ง (เติมจากล่างขึ้นบน)
+        var step = 4;
+        var a = 0;
+        while (a < sweep) {
+            var bEnd = a + step + 1;        // เกยกัน 1 องศาไม่ให้เห็นรอยต่อ
+            if (bEnd > sweep) { bEnd = sweep; }
+
+            // ต้องมีความยาวอย่างน้อย 1 องศา ไม่งั้นจะกลายเป็นวงกลมเต็ม
+            if (bEnd > a) {
+                var col = gradientColor(stops, ((a + bEnd) / 2.0) / total);
+                dc.setColor(col, Graphics.COLOR_TRANSPARENT);
+                if (isLeft) {
+                    dc.drawArc(cx, cy, r, Graphics.ARC_CLOCKWISE,
+                        270 - ARC_GAP - a, 270 - ARC_GAP - bEnd);
+                } else {
+                    dc.drawArc(cx, cy, r, Graphics.ARC_COUNTER_CLOCKWISE,
+                        -90 + ARC_GAP + a, -90 + ARC_GAP + bEnd);
+                }
+            }
+            a += step;
+        }
+
+        // จุดที่ปลาย arc
         var tipDeg;
         if (isLeft) {
             tipDeg = 270 - ARC_GAP - sweep;
         } else {
             tipDeg = -90 + ARC_GAP + sweep;
         }
-
-        if (sweep > 0.5) {
-            dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-            if (isLeft) {
-                dc.drawArc(cx, cy, r, Graphics.ARC_CLOCKWISE, 270 - ARC_GAP, tipDeg);
-            } else {
-                dc.drawArc(cx, cy, r, Graphics.ARC_COUNTER_CLOCKWISE, -90 + ARC_GAP, tipDeg);
-            }
-        }
-
         var rad = tipDeg * Math.PI / 180.0;
         var tipX = cx + r * Math.cos(rad);
         var tipY = cy - r * Math.sin(rad);
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.fillCircle(tipX, tipY, 4);
+        dc.fillCircle(tipX, tipY, (ARC_W / 2) - 3);
     }
 
     // ---------------- ไอคอน + ตัวเลข ข้างๆ arc ----------------
     function drawSideInfo(dc as Dc, x as Number, y as Number,
-                          value as Number or Null, color as Number,
+                          value as Number or Null, stops as Array<Number>,
                           icon as BitmapResource or Null) as Void {
         drawIcon(dc, icon, x, y - 14);
 
-        var txt = (value == null) ? "--" : value.toString();
+        var color = 0x898989;
+        var txt = "--";
+        if (value != null) {
+            txt = value.toString();
+            color = gradientColor(stops, value.toFloat() / 100.0);
+        }
         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
         dc.drawText(x, y + 12, Graphics.FONT_XTINY, txt,
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
-    function getStress() as Number or Null {
-        if ((Toybox has :SensorHistory) && (SensorHistory has :getStressHistory)) {
-            var it = SensorHistory.getStressHistory({:period => 1,
-                :order => SensorHistory.ORDER_NEWEST_FIRST});
-            var s = (it != null) ? it.next() : null;
-            if (s != null && s.data != null) {
-                return s.data.toNumber();
-            }
-        }
-        return null;
-    }
-
-    function getBodyBattery() as Number or Null {
-        if ((Toybox has :SensorHistory) && (SensorHistory has :getBodyBatteryHistory)) {
-            var it = SensorHistory.getBodyBatteryHistory({:period => 1,
-                :order => SensorHistory.ORDER_NEWEST_FIRST});
-            var s = (it != null) ? it.next() : null;
-            if (s != null && s.data != null) {
-                return s.data.toNumber();
-            }
-        }
-        return null;
-    }
-
     // ---------------- HR ----------------
     function updateHeartRateData() as Void {
         var now = System.getTimer();
-        if (now - _lastHrCheck > 3000) {
+        if (now - _lastHrCheck > 3000) { // 3000 ms = 3 s
             _lastHrCheck = now;
             var currentHr = 0;
 
@@ -415,7 +531,6 @@ class myWatchfaceView extends WatchUi.WatchFace {
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
             dc.fillCircle(lastX, lastY, 3);
 
-            // ไอคอนหัวใจ (bitmap) + ตัวเลข HR
             var hrTxt = currentVal.toString();
             var tw = dc.getTextWidthInPixels(hrTxt, Graphics.FONT_XTINY);
             var iconW = (_iconHeart != null) ? _iconHeart.getWidth() : 16;
