@@ -13,9 +13,11 @@ import Toybox.Complications;
 
 class myWatchfaceView extends WatchUi.WatchFace {
     private var _progress as Float = 1.0;
+    private var _numFade as Float = 1.0;      // ความจางของตัวเลข % (0 = ซ่อน, 1 = เต็ม)
     private var _timer as Timer.Timer or Null = null;
     private var _startMs as Number = 0;
-    private var _animMs as Number = 800;
+    private var _animMs as Number = 800;      // ช่วงที่ 1: arc เลื่อน
+    private var _fadeMs as Number = 400;      // ช่วงที่ 2: ตัวเลขเฟดเข้า (หลัง arc เลื่อนสุด)
     private var _hrHistory as Array<Number> = [];
     private var _maxHistorySize as Number = 25;
     private var _lastHrCheck as Number = 0;
@@ -30,8 +32,8 @@ class myWatchfaceView extends WatchUi.WatchFace {
     private var _lastWellnessMs as Number = -10000;
     private var _useComplications as Boolean = false;
 
-    private const ARC_GAP = 5;    // ช่องว่างปลายครึ่งวงกลมด้านบน/ล่าง (องศา)
-    private const ARC_W = 10;     // ความหนา arc
+    private const ARC_GAP = 30;    // ช่องว่างปลายครึ่งวงกลมด้านบน/ล่าง (องศา)
+    private const ARC_W = 12;     // ความหนา arc
 
     // สีไล่ระดับ (ต่ำ -> สูง) แก้ได้ตามชอบ
     private var _stressStops as Array<Number> = [0xFF9500, 0xFF2D2D];   // ส้ม -> แดง
@@ -72,7 +74,7 @@ class myWatchfaceView extends WatchUi.WatchFace {
         drawSideArc(dc, cx, cy, r, stress, true, _stressStops);
         drawSideArc(dc, cx, cy, r, bodyBatt, false, _bodyStops);
 
-        // ตัวเลข + ไอคอน อยู่ข้างๆ arc
+        // ไอคอน + ตัวเลข อยู่ข้างๆ arc (ตัวเลขเฟดเข้าหลัง arc เลื่อนสุด)
         var infoOffset = (ARC_W / 2) + 30;
         drawSideInfo(dc, cx - r + infoOffset, cy, stress, _stressStops, _iconStress);
         drawSideInfo(dc, cx + r - infoOffset, cy, bodyBatt, _bodyStops, _iconBody);
@@ -87,6 +89,8 @@ class myWatchfaceView extends WatchUi.WatchFace {
 
     function onHide() as Void {
         stopAnim();
+        _progress = 1.0;
+        _numFade = 1.0;
     }
 
     function onExitSleep() as Void {
@@ -96,13 +100,15 @@ class myWatchfaceView extends WatchUi.WatchFace {
 
     function onEnterSleep() as Void {
         stopAnim();
-        _progress = 1.0;
+        _progress = 1.0;         // โหมดประหยัดพลังงานแสดงค่าเต็มทันที
+        _numFade = 1.0;
         WatchUi.requestUpdate();
     }
 
     function startAnim() as Void {
         stopAnim();
         _progress = 0.0;
+        _numFade = 0.0;          // ซ่อนตัวเลขจนกว่า arc จะเลื่อนสุด
         _startMs = System.getTimer();
         _timer = new Timer.Timer();
         _timer.start(method(:onTick), 40, true);
@@ -116,12 +122,24 @@ class myWatchfaceView extends WatchUi.WatchFace {
     }
 
     function onTick() as Void {
-        var t = (System.getTimer() - _startMs).toFloat() / _animMs;
-        if (t >= 1.0) {
-            t = 1.0;
+        var el = (System.getTimer() - _startMs).toFloat();
+
+        // ช่วงที่ 1: arc เลื่อน (ease-out)
+        var t = el / _animMs;
+        if (t > 1.0) { t = 1.0; }
+        _progress = 1.0 - Math.pow(1.0 - t, 3);
+
+        // ช่วงที่ 2: เมื่อ arc เลื่อนสุดแล้ว ตัวเลขค่อยๆ เฟดเข้า
+        var f = (el - _animMs) / _fadeMs;
+        if (f < 0.0) { f = 0.0; }
+        if (f > 1.0) { f = 1.0; }
+        _numFade = f;
+
+        if (el >= _animMs + _fadeMs) {
+            _progress = 1.0;
+            _numFade = 1.0;
             stopAnim();
         }
-        _progress = 1.0 - Math.pow(1.0 - t, 3);
         WatchUi.requestUpdate();
     }
 
@@ -371,7 +389,6 @@ class myWatchfaceView extends WatchUi.WatchFace {
     }
 
     // ---------------- Arc ครึ่งวงกลม ไล่สี ----------------
-        // ---------------- Arc ครึ่งวงกลม ไล่สี ----------------
     function drawSideArc(dc as Dc, cx as Number, cy as Number, r as Number,
                          value as Number or Null, isLeft as Boolean,
                          stops as Array<Number>) as Void {
@@ -435,12 +452,17 @@ class myWatchfaceView extends WatchUi.WatchFace {
                           icon as BitmapResource or Null) as Void {
         drawIcon(dc, icon, x, y - 14);
 
+        // ตัวเลขยังไม่โผล่จนกว่า arc จะเลื่อนสุด
+        if (_numFade <= 0.0) { return; }
+
         var color = 0x898989;
         var txt = "--";
         if (value != null) {
             txt = value.toString();
             color = gradientColor(stops, value.toFloat() / 100.0);
         }
+        color = lerpColor(0x000000, color, _numFade);   // เฟดจากพื้นหลังสีดำ
+
         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
         dc.drawText(x, y + 12, Graphics.FONT_XTINY, txt,
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
