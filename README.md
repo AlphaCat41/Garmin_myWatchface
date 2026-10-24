@@ -1,3 +1,4 @@
 # Garmin Forerunner 165
-<img width="390" height="390" alt="test" src="https://github.com/user-attachments/assets/b4517c25-7937-4fb7-8496-5ad775a3aa34" />
+<img width="390" height="390" alt="test" src="https://github.com/user-attachments/assets/e552c186-ff98-45e5-a7a8-2470ba72e262" />
+
 
