@@ -1,5 +1,12 @@
 developer_key
 /bin
-/manifest.xml
 /monkey.jungle
 /build
+/*.iq
+/*.prg
+/*.xml
+/mir
+/*.mir
+/gen
+/internal-mir
+/manifest.xml
